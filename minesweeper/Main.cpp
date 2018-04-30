@@ -10,6 +10,7 @@ using namespace sf;
 
 int W, H, S, N; // marimea ferestrei + fps + nr de mine
 int grid[MAX][MAX], box[MAX][MAX]; // grid pt logica jocului, box pt afisare
+int checked[MAX][MAX];
 Texture t; // pt imagini
 Sprite s; // pt afisare
 int m_i, m_j, m_b; // coordonate mouse + buton (0=niciunul, 1=stanga, 2=dreapta)
@@ -21,7 +22,7 @@ void setup()
 	cout << "H: "; cin >> H;
 	cout << "S: "; cin >> S;
 	cout << "N: "; cin >> N;*/
-	W = 14; H = 10; S = 60; N = 10;
+	W = 10; H = 6; S = 60; N = 10;
 }
 
 void addMines()
@@ -48,6 +49,7 @@ void restart()
 		{
 			grid[i][j] = 0; // liber
 			box[i][j] = 10; // caseta nedezvaluita
+			checked[i][j] = 0;
 		}
 }
 
@@ -72,7 +74,6 @@ void drawBox(RenderWindow &window)
 	for (i = 1; i <= H; i++)
 		for (j = 1; j <= W; j++)
 		{
-			if (box[i][j] == -1) box[i][j] = 0;
 			s.setPosition((j - 1)*SIZE, (i - 1)*SIZE);
 			s.setTextureRect(IntRect(box[i][j] * 32, 0, 32, 32));
 			window.draw(s);
@@ -118,7 +119,6 @@ int main()
 		window.clear();
 		switch (m_b) // in functie de ce buton apasam
 		{
-		case 0: break;
 		case 1: // stanga
 			if (box[m_i][m_j] == 10) // am facut click pe o caseta nedezvaluita
 			{
@@ -134,12 +134,15 @@ int main()
 					{
 						ia = q.front().first; ja = q.front().second; // coordonatele celulei actuale
 						q.pop(); // am terminat cu celula asta, o pot scoate
-						box[ia][ja] = 0; // celula fara vecini minati, o retin pt afisare
-						grid[ia][ja] = -1; // demarchez celula actuala
+						box[ia][ja] = grid[ia][ja]; // retin celula pt afisare
+						checked[ia][ja] = 1; // demarchez celula actuala
 						for (int d = 0; d < 8; d++)
 						{
 							iv = ia + di[d]; jv = ja + dj[d]; // coordonatele celulei vecine actuale
-							if (inside(iv, jv) && grid[iv][jv] == 0) q.push(make_pair(iv, jv));
+							/* daca caseta actuala este libera (grid[ia][ja]==0) atunci putem continua sa dezvaluim casetele din apropiere
+							   cat timp nu sunt bombe (grid[iv][jv]!=9) si nu le-am dezvaluit deja (checked[iv][jv]!=0)
+							*/
+							if (inside(iv, jv) && grid[iv][jv] != 9 && !checked[iv][jv] && grid[ia][ja] == 0) q.push(make_pair(iv, jv));
 						}
 					}
 				}
@@ -150,6 +153,7 @@ int main()
 			if (box[m_i][m_j] == 10) box[m_i][m_j] = 11; // caseta nu a fost dezvaluita inca deci ii putem pune un stegulet pt siguranta
 			else if (box[m_i][m_j] == 11) box[m_i][m_j] = 10; // daca are deja stegulet, putem sa il scoatem
 			break;
+		default: break;
 		}
 		m_b = 0;
 
