@@ -139,16 +139,13 @@ int main()
 						for (int d = 0; d < 8; d++)
 						{
 							iv = ia + di[d]; jv = ja + dj[d]; // coordonatele celulei vecine actuale
-							/* daca caseta actuala este libera (grid[ia][ja]==0) atunci putem continua sa dezvaluim casetele din apropiere
-							   cat timp nu sunt bombe (grid[iv][jv]!=9) si nu le-am dezvaluit deja (checked[iv][jv]!=0)
-							*/
 							if (inside(iv, jv) && grid[iv][jv] != 9 && !checked[iv][jv] && grid[ia][ja] == 0) q.push(make_pair(iv, jv));
 						}
 					}
 				}
 				else box[m_i][m_j] = grid[m_i][m_j]; // caseta are vecini minati; o dezvaluim doar pe aceasta
-				break;
 			}
+				break;
 		case 2: // dreapta
 			if (box[m_i][m_j] == 10) box[m_i][m_j] = 11; // caseta nu a fost dezvaluita inca deci ii putem pune un stegulet pt siguranta
 			else if (box[m_i][m_j] == 11) box[m_i][m_j] = 10; // daca are deja stegulet, putem sa il scoatem
