@@ -143,7 +143,11 @@ int main()
 
 		// logica
 		window.clear(Color::White);
-		if(Keyboard::isKeyPressed(Keyboard::Space)) updateAnts();
+		if(Keyboard::isKeyPressed(Keyboard::Space)) 
+		{
+			newTerrain();
+			updateAnts();
+		}
 
 		// afisare
 		drawBoxes(window);
