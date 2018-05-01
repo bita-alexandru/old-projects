@@ -22,8 +22,10 @@ void setup()
 	cout << "H: "; cin >> H;
 	cout << "S: "; cin >> S;
 	cout << "N: "; cin >> N;*/
-	W = 10; H = 6; S = 60; N = 10;
+	W = 16; H = 6; S = 60; N = 50;
 }
+
+inline bool inside(int i, int j) { return(i > 0 && i <= H && j > 0 && j <= W); } // inauntrul matricei (true)
 
 void addMines()
 {
@@ -33,10 +35,12 @@ void addMines()
 	while (m) // cat timp nu am terminat de adaugat cele N mine
 	{
 		i = rand() % H + 1; j = rand() % W + 1;
-		if (grid[i][j] == 0) // loc liber
+		if (grid[i][j] != 9) // loc liber
 		{
 			grid[i][j] = 9; // minez
 			m--;
+			for (int d = 0; d < 8; d++) // maresc nr de pericole in casetele libere adiacente acestei mine
+				if (inside(i + di[d], j + dj[d]) && grid[i+di[d]][j+dj[d]] != 9) grid[i + di[d]][j + dj[d]]++;
 		}
 	}
 }
@@ -44,28 +48,13 @@ void addMines()
 void restart()
 {
 	int i, j;
-	for (i = 1; i<= H; i++)
+	for (i = 1; i <= H; i++)
 		for (j = 1; j <= W; j++)
 		{
 			grid[i][j] = 0; // liber
 			box[i][j] = 10; // caseta nedezvaluita
 			checked[i][j] = 0;
 		}
-}
-
-inline bool inside(int i, int j) { return(i > 0 && i <= H && j > 0 && j <= W); } // inauntrul matricei (true)
-
-void checkNeighbours()
-{
-	int i, j, d, iv, jv;
-	for (i = 1; i <= H; i++)
-		for (j = 1; j <= W; j++)
-			for (d = 0; d < 8; d++)
-				if (grid[i][j] != 9) // celula careia vrem sa ii verificam vecinii nu este o mina
-				{
-					iv = i + di[d]; jv = j + dj[d]; // coordonatele celulei vecine actuale
-					if (inside(iv, jv) && grid[iv][jv] == 9) grid[i][j]++; // vecinul este o mina
-				}
 }
 
 void drawBox(RenderWindow &window)
@@ -86,11 +75,10 @@ int main()
 	setup();
 	restart();
 	addMines();
-	checkNeighbours();
 	if (!t.loadFromFile("resurse/tiles.jpg")) throw "Error"; // incarca imaginea
 	s.setTexture(t); // o setam pe sprite-ul s
 
-	// fereastra
+					 // fereastra
 	RenderWindow window(VideoMode(W*SIZE, H*SIZE), "Minesweeper");
 	window.setFramerateLimit(S);
 	while (window.isOpen())
@@ -111,7 +99,6 @@ int main()
 			{
 				restart();
 				addMines();
-				checkNeighbours();
 			}
 		}
 
@@ -145,7 +132,7 @@ int main()
 				}
 				else box[m_i][m_j] = grid[m_i][m_j]; // caseta are vecini minati; o dezvaluim doar pe aceasta
 			}
-				break;
+			break;
 		case 2: // dreapta
 			if (box[m_i][m_j] == 10) box[m_i][m_j] = 11; // caseta nu a fost dezvaluita inca deci ii putem pune un stegulet pt siguranta
 			else if (box[m_i][m_j] == 11) box[m_i][m_j] = 10; // daca are deja stegulet, putem sa il scoatem
