@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <iostream>
 #include <cstdlib>
 #include <vector>
@@ -40,6 +41,12 @@ int main()
 	srand(time(NULL)); // initializez seedul
 	fruit(); // spawnez un fruct
 
+	/* audio */
+	SoundBuffer sb_eat, sb_ouch;
+	if (!sb_eat.loadFromFile("resurse/eat.wav"));
+	if (!sb_ouch.loadFromFile("resurse/ouch.wav"));
+	Sound s_eat(sb_eat), s_ouch(sb_ouch);
+
 	/* window */
 	RenderWindow window(VideoMode(SIZE*WIDTH, SIZE*HEIGHT), "Sneic");
 	window.setFramerateLimit(10);
@@ -80,6 +87,7 @@ int main()
 
 		if (head_i == f_i && head_j == f_j) // am luat fructul
 		{
+			s_eat.play(); // sunet
 			n_tail++; // se mareste coada
 			v_tail.push_back(make_pair(1, 1)); // mai adaug o bucata
 			for (size_t i = n_tail - 1; i > 0; i--) // actualizez coada
@@ -99,6 +107,7 @@ int main()
 		for (size_t i = 1; i < n_tail; i++)
 			if (head_i == v_tail[i].first&&head_j == v_tail[i].second) // capul atinge coada deci sarpele se musca singur
 			{
+				s_ouch.play(); // sunet
 				n_tail = 2; // revenim la 2 bucati
 				v_tail.resize(n_tail); // reactualizam marimea vectorului
 			}
