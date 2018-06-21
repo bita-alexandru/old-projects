@@ -48,7 +48,7 @@ void updateCells()
             for(int d=0;d<8;d++)
             {
                 in=i+di[d]; jn=j+dj[d]; // coordonatele celulei vecine
-                if(inside(i,j) && (cells[in][jn]==LIVING || cells[in][jn]==WILL_DIE)) n++; // celula vecina VIE momentan
+                if(inside(in,jn) && (cells[in][jn]==LIVING || cells[in][jn]==WILL_DIE)) n++; // celula vecina VIE momentan
             }
             if(cells[i][j]==LIVING) cells[i][j] = (n==2||n==3)? LIVING:WILL_DIE; // are 2 sau 3 vecini -> traieste; altfel va muri
             else cells[i][j] = (n==3)? WILL_BE_BORN:DEAD; // are 3 vecini -> va renaste; altfel ramane moarta
