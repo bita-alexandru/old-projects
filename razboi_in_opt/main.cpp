@@ -2634,18 +2634,25 @@ void Reluare()
     // citeste fisierul de replay
     ifstream in("replay.info");
 
-    char c; in>>c; in.ignore();
-    int razboi_in4 = (c == '0' ? 1:2);
+    char c;
+    int razboi_in4;
 
-    mutari_ramase = 0;
+    if(in)
+    {
+        in>>c; in.ignore();
+        razboi_in4 = (c == '0' ? 1:2);
+    }
 
     char txt_replay[102][LEN];
-    while(!in.eof()) // cate mutari s-au jucat ?
+    mutari_ramase = 0;
+
+    while(in && !in.eof()) // cate mutari s-au jucat ?
     {
         in.get(txt_replay[mutari_ramase++],LEN);
         in.ignore();
     }
     mutari_ramase--; // fara mesajul de la final
+    if(mutari_ramase == -1) mutari_ramase = 0;
 
     // afiseaza <nr mutari ramase>
     char txtNrMutari[12]; itoa(mutari_ramase, txtNrMutari);
