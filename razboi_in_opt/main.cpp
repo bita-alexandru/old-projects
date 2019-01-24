@@ -198,8 +198,8 @@ void Credits();//Marian
 void PVP();//Alex
 void PVIA();//Alex
 void Reluare();//Alex
-void Sfarsit(int cod=0,int altcod=0);//Alex
-void Restart(int cod=0);//Alex
+void Sfarsit(int,int);//Alex
+void Restart(int);//Alex
 void Salveaza();//Alex
 
 char* itoa(int nr, char b[]) // converteste un nr in char*   Marian
@@ -401,7 +401,7 @@ void stergePiesa(int linie, int coloana)//Marian
 
 void deseneazaPosibile(int linie, int coloana)//Alex
 {
-    int di[4] = {-1,-1,1,1}, dj[4] = {-1,1,-1,1};
+    int di[4] = {-1,-1,1,1}, dj[4] = {-1,1,1,-1};
 
     // evidentiaza zonele unde se poate efectua mutarea
     for(int d = 0; d < 4; d++)
@@ -419,7 +419,7 @@ void deseneazaPosibile(int linie, int coloana)//Alex
 
 void stergePosibile(int linie, int coloana)//Alex
 {
-    int di[4] = {-1,-1,1,1}, dj[4] = {-1,1,-1,1};
+    int di[4] = {-1,-1,1,1}, dj[4] = {-1,1,1,-1};
 
     for(int d = 0; d < 4; d++)
     {
@@ -489,7 +489,7 @@ void verificaButoane(int x, int y, int cod=0)//Alex
 
 void vulnerabilitate(int blocaje, bool &mutat)//Alex
 {
-    int di[4] = {-1,-1,1,1}, dj[4] = {-1,1,-1,1};
+    int di[4] = {-1,-1,1,1}, dj[4] = {-1,1,1,-1};
 
     for(int k = 0; k < sizeAI && !mutat; k++)
     {
@@ -547,13 +547,13 @@ void mutareAi(int index)//Alex
 
     itoa(index_ai,txt_mutare); strcat(txt_mutare,". ");
 
-    int di[4] = {-1,-1,1,1}, dj[4] = {-1,1,-1,1};
+    int di[4] = {-1,-1,1,1}, dj[4] = {-1,1,1,-1};
     bool mutat = false, eliminat = false;
 
     // elimin piesele inamice blocate
     for(int i = 0; i < 8; i++)
         for(int j = 0; j < 8; j++)
-            if(index_ai > nr_safe && tabla[i][j] == JUCATOR1 && esteBlocat(i,j))
+            if(index_ai > nr_safe+2 && tabla[i][j] == JUCATOR1 && esteBlocat(i,j))
             {
                 eliminat = true;
                 tabla[i][j] = 0;
@@ -589,7 +589,7 @@ void mutareAi(int index)//Alex
         {
             if(ai[i].status == 1)
             {
-                int l = ai[i].linie-1;
+                int l = ai[i].linie+1;
                 int c1 = ai[i].coloana-1;
                 int c2 = ai[i].coloana+1;
                 if(esteInauntru(l,c1) && tabla[l][c1] == 0)
@@ -692,7 +692,7 @@ void mutareAi(int index)//Alex
     // elimin eventualele piese inamice blocate
     for(int i = 0; i < 8; i++)
         for(int j = 0; j < 8; j++)
-            if(index_ai > nr_safe && tabla[i][j] == JUCATOR1 && esteBlocat(i,j))
+            if(index_ai > nr_safe+2 && tabla[i][j] == JUCATOR1 && esteBlocat(i,j))
             {
                 eliminat = true;
                 tabla[i][j] = 0;
@@ -878,7 +878,7 @@ void mutarePiesa(int cod=0, int altcod=0) // 0 = pvp, 1 = pvai    Alex
             int linie1, coloana1;
             determinaPozitie(linie1,coloana1);
 
-            if(index_mutare >= nr_safe && tabla[linie1][coloana1] != 0 && esteInauntru(linie1,coloana1) && esteBlocat(linie1,coloana1)) // sterge piesa valida
+            if(index_mutare > nr_safe+2 && tabla[linie1][coloana1] != 0 && esteInauntru(linie1,coloana1) && esteBlocat(linie1,coloana1)) // sterge piesa valida
             {
                 piesa_eliminata = true;
 
@@ -2910,7 +2910,7 @@ void Sfarsit(int cod, int altcod) // 0 = capitulare, 1 = victorie meci complet, 
     }
     else if(cod == 1) // un jucator a castigat meciul
     {
-        if(altcod == 1)
+        if(altcod == 1 && scor_j2 > scor_j1)
         {
             const char imgInfrant[2][2][LEN] = {"img/infrantDRO.jpg", "img/infrantDEN.jpg", "img/infrantNRO.jpg", "img/infrantNEN.jpg"};
             if(mod_sfx == PORNIT) sunetEgal.play();
@@ -2953,7 +2953,6 @@ void Sfarsit(int cod, int altcod) // 0 = capitulare, 1 = victorie meci complet, 
 
         castigator = 0;
         readimagefile(imgEgal[mod][limba], COORD1(pozRezultat));
-
     }
 
     readimagefile(imgSfarsit[mod], COORD1(pozSfarsit));
