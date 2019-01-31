@@ -34,7 +34,6 @@ using namespace std;
 #define STERGE(x) x[limba][0], x[limba][1], x[limba][2]+1, x[limba][3]+1 // pt bar()
 
 #define debug(x,y) cout<<x<<' '<<y<<'\n';
-
 // locatii fisiere[mod][limba][2] + pozitii butoane[limba][4]
 
 // butoane muzica+credits
