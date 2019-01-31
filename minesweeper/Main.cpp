@@ -22,7 +22,7 @@ void setup()
 	cout << "H: "; cin >> H;
 	cout << "S: "; cin >> S;
 	cout << "N: "; cin >> N;*/
-	W = 16; H = 6; S = 60; N = 50;
+	W = 10; H = 20; S = 60; N = 20;
 }
 
 inline bool inside(int i, int j) { return(i > 0 && i <= H && j > 0 && j <= W); } // inauntrul matricei (true)

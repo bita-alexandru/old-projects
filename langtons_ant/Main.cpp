@@ -21,10 +21,13 @@ RectangleShape box(Vector2f(S, S)); // caseta
 
 void setup()
 {
-	cout << "W: "; cin >> WIDTH;
-	cout << "H: "; cin >> HEIGHT;
-	cout << "S: "; cin >> SPEED;
-	cout << "N: "; cin >> nAnts;
+//	cout << "W: "; cin >> WIDTH;
+//	cout << "H: "; cin >> HEIGHT;
+//	cout << "S: "; cin >> SPEED;
+//	cout << "N: "; cin >> nAnts;
+    WIDTH=50; HEIGHT=45;
+    SPEED=20;
+    nAnts=1;
 }
 
 void initGrid()
@@ -143,7 +146,7 @@ int main()
 
 		// logica
 		window.clear(Color::White);
-		if(Keyboard::isKeyPressed(Keyboard::Space)) 
+		if(Keyboard::isKeyPressed(Keyboard::Space))
 		{
 			newTerrain();
 			updateAnts();

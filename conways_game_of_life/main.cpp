@@ -15,9 +15,10 @@ RectangleShape cell(Vector2f(S,S)); // celula in forma de patrat
 
 void windowSetup()
 {
-    cout<<"WIDTH: "; cin>>WIDTH;
-    cout<<"HEIGHT: "; cin>>HEIGHT;
-    cout<<"SPEED: "; cin>>SPEED;
+//    cout<<"WIDTH: "; cin>>WIDTH;
+//    cout<<"HEIGHT: "; cin>>HEIGHT;
+//    cout<<"SPEED: "; cin>>SPEED;
+    WIDTH=60; HEIGHT=50; SPEED=10;
 }
 
 void cellSetup()

@@ -27,8 +27,12 @@ struct walls
 void mazeInit() // initialize the topside-walls and the rightside-walls
 {
     int i, j;
-    cout<<"HEIGHT(1-32): "; cin>>SIZE_H; MAZE_H=(SIZE_H*2)+1;
-    cout<<"WIDTH(1-59): "; cin>>SIZE_W; MAZE_W=(SIZE_W*2)+1;
+//    cout<<"HEIGHT(1-32): "; cin>>SIZE_H;
+    SIZE_H=32;
+    MAZE_H=(SIZE_H*2)+1;
+//    cout<<"WIDTH(1-59): "; cin>>SIZE_W;
+    SIZE_W=59;
+    MAZE_W=(SIZE_W*2)+1;
     cout<<"SPEED(1-60): "; cin>>SPEED;
     for(i=0;i<=MAZE_H;i++)
         for(j=0;j<=MAZE_W;j++) maze[i][j]=' ';
@@ -122,11 +126,21 @@ queue< pair<int,int> > Q;
 
 void placeMaC() // place mouse and cheese
 {
-    cout<<endl<<"mouse_i: "; cin>>mouse_i;
-    cout<<endl<<"mouse_j: "; cin>>mouse_j;
+    do
+    {
+        mouse_i=rand()%(SIZE_H-1)+1;
+        mouse_j=rand()%(SIZE_W-1)+1;
+    }while(maze[mouse_i][mouse_j]!=' ');
+//    cout<<endl<<"mouse_i: "; cin>>mouse_i;
+//    cout<<endl<<"mouse_j: "; cin>>mouse_j;
     maze[mouse_i][mouse_j]='x'; found[mouse_i][mouse_j]=1;
-    cout<<endl<<"cheese_i: "; cin>>cheese_i;
-    cout<<endl<<"cheese_j: "; cin>>cheese_j;
+//    cout<<endl<<"cheese_i: "; cin>>cheese_i;
+//    cout<<endl<<"cheese_j: "; cin>>cheese_j;
+    do
+    {
+        cheese_i=rand()%(SIZE_H-1)+1;
+        cheese_j=rand()%(SIZE_W-1)+1;
+    }while(maze[cheese_i][cheese_j]!=' ');
     maze[cheese_i][cheese_j]='o';
 }
 
@@ -183,7 +197,7 @@ int main()
     mazeInit();
     gridSetup(1,1);
     mazeGenerate();
-    mazeDraw();
+//    mazeDraw();
     placeMaC();
     findCheese();
     makeTrace();
