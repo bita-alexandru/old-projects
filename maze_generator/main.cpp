@@ -28,12 +28,13 @@ void mazeInit() // initialize the topside-walls and the rightside-walls
 {
     int i, j;
 //    cout<<"HEIGHT(1-32): "; cin>>SIZE_H;
-    SIZE_H=32;
+    SIZE_H=20;
     MAZE_H=(SIZE_H*2)+1;
 //    cout<<"WIDTH(1-59): "; cin>>SIZE_W;
-    SIZE_W=59;
+    SIZE_W=40;
     MAZE_W=(SIZE_W*2)+1;
-    cout<<"SPEED(1-60): "; cin>>SPEED;
+//    cout<<"SPEED(1-60): "; cin>>SPEED;
+    SPEED = 60;
     for(i=0;i<=MAZE_H;i++)
         for(j=0;j<=MAZE_W;j++) maze[i][j]=' ';
     for(i=1;i<=MAZE_H;i++)
@@ -126,21 +127,23 @@ queue< pair<int,int> > Q;
 
 void placeMaC() // place mouse and cheese
 {
-    do
-    {
-        mouse_i=rand()%(SIZE_H-1)+1;
-        mouse_j=rand()%(SIZE_W-1)+1;
-    }while(maze[mouse_i][mouse_j]!=' ');
+//    do
+//    {
+//        mouse_i=rand()%(SIZE_H-1)+1;
+//        mouse_j=rand()%(SIZE_W-1)+1;
+//    }while(maze[mouse_i][mouse_j]!=' ');
 //    cout<<endl<<"mouse_i: "; cin>>mouse_i;
 //    cout<<endl<<"mouse_j: "; cin>>mouse_j;
+    mouse_i = mouse_j = 2;
     maze[mouse_i][mouse_j]='x'; found[mouse_i][mouse_j]=1;
 //    cout<<endl<<"cheese_i: "; cin>>cheese_i;
 //    cout<<endl<<"cheese_j: "; cin>>cheese_j;
-    do
-    {
-        cheese_i=rand()%(SIZE_H-1)+1;
-        cheese_j=rand()%(SIZE_W-1)+1;
-    }while(maze[cheese_i][cheese_j]!=' ');
+//    do
+//    {
+//        cheese_i=rand()%(SIZE_H-1)+1;
+//        cheese_j=rand()%(SIZE_W-1)+1;
+//    }while(maze[cheese_i][cheese_j]!=' ');
+    cheese_i = MAZE_H-1; cheese_j = MAZE_W-1;
     maze[cheese_i][cheese_j]='o';
 }
 
@@ -263,7 +266,7 @@ int main()
         if(mouse_i==cheese_i&&mouse_j==cheese_j&&!eatCheese)
         {
             cout<<endl<<"The little mouse ate the cheese. Mmm... it was good!";
-            snd_eat.play();
+//            snd_eat.play();
             eatCheese=true;
         }
         maze[mouse_i][mouse_j]='r';
