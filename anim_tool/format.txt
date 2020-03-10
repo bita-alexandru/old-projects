@@ -1,0 +1,20 @@
+INIT
+BUFFER/SOUND/SPRITE/ROTATE/SCALE/VIEW
+ENDINIT
+
+BUFFER id fisier
+SOUND id optiune
+TALK entitate buffer volum subtitrare
+
+SPRITE id textura x y
+VIEW optiune
+
+TELEPORT entitate x y
+SLIDE entitate x y durata
+SCALE entitate x y zoom
+ROTATE entitate valoare durata
+
+FADEIN durata
+FADEOUT durata
+
+WAIT durata

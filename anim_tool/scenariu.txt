@@ -1,0 +1,20 @@
+INIT
+    AUDIO replica replici/a.ogg
+	SPRITE fundal imagini/fundal.png 0 0
+	SPRITE om imagini/e1.png 0 449
+
+	VIEW view NEW & ADD fundal om
+ENDINIT
+
+RECORD
+	VIEW view FOCUS om
+    VIEW view ZOOM 1 0.5 0.5; WAIT view ZOOM 0;
+	ROTATE om 360 1;
+	SLIDE om 700 0 0.75; ROTATE om 180 0.8; WAIT om SLIDE 0;
+	SLIDE om -700 0 0.75; ROTATE om -180 0.8; WAIT om SLIDE 0;
+	
+    TALK om replica 8
+    WAIT om TALK 1
+
+	WAIT NONE 1; FADEOUT view 0.75; WAIT view FADEOUT 0
+ENDRECORD
