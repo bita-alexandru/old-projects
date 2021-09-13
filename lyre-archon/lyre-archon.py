@@ -1,6 +1,14 @@
-from pyautogui import locateAllOnScreen, center, click
+import pyautogui
 from pynput.mouse import Listener, Button
+from pynput import keyboard
 from json import load, dump
+from random import randint
+import ctypes
+
+USER32 = ctypes.windll.user32
+WIDTH, HEIGHT = USER32.GetSystemMetrics(0), USER32.GetSystemMetrics(1)
+
+pyautogui.FAILSAFE = False
 
 SETUP_PATH: str = "setup.json"
 
@@ -23,7 +31,8 @@ message: str = ""
 def load_setup() -> bool:
     global notes_positions
 
-    setup_file: file = open(SETUP_PATH, "a+")
+    open(SETUP_PATH, "at").close()
+    setup_file: file = open(SETUP_PATH, "rt")
 
     print("Loading setup...")
 
@@ -105,6 +114,20 @@ def on_scroll(_x: int, _y: int, dx: int, dy: int) -> bool:
     
     return False
 
+def on_press(key: keyboard.Key) -> bool:
+    global message
+
+    if key in (keyboard.Key.ctrl_r, keyboard.Key.ctrl_l):
+        message = "CTRL"
+        return False
+    
+    if key == keyboard.Key.esc:
+        message = "ESC"
+        return False
+    
+    message = "INVALID"
+    return False
+
 def setup_row(row: str) -> None:
     i: int = 0
     while i < NUM_NOTES:
@@ -167,6 +190,58 @@ def setup_note(row: str, note: str) -> None:
                 print("Set \"%s\" on the \"%s\" with the coordinates (%i, %i)"%(note, row, x, y))
                 return
 
+def play_note(row: str, note: str) -> None:
+    RADIUS = 10
+    x, y = notes_positions[row][note]
+    
+    dx: int = randint(-RADIUS, RADIUS)
+    dy: int = randint(-RADIUS, RADIUS)
+
+    x = max(0, x+dx)
+    x = min(WIDTH, x)
+
+    y = max(0, y+dy)
+    y = min(HEIGHT, y)
+
+    pyautogui.click(x, y)
+
+def play_song():
+    SONG_PATH: str = "song.txt"
+    open(SONG_PATH, "at").close()
+    song_file: file = open(SONG_PATH, "rt")
+
+    tabs: tuple = song_file.read().replace("\n", "").split(" ")
+    i: int = 0
+    while i < len(tabs):
+        tab: str = tabs[i]
+
+        if len(tab) != 3 or tab[0] not in "123" or tab[1:3] not in notes:
+            i += 1
+            continue
+
+        reset_xy()
+
+        with keyboard.Listener(on_press=on_press) as listener:
+            listener.join()
+
+        if message == "CTRL":
+            i += 1
+
+            row_num = int(tab[0])
+            row: str = rows[row_num - 1]
+            note: str = tab[1:3]
+
+            play_note(row, note)
+            
+            print(tab, end=" ", flush=True)
+            continue
+
+        if message == "ESC":
+            print("Operation canceled")
+            return
+            
+    print()
+
 def handle_commands() -> str:
     print(">", end=" ")
     
@@ -179,10 +254,18 @@ def handle_commands() -> str:
     if command in ("save", "s"):
         save_setup()
         return "SAVE"
+
+    if command == "play":
+        play_song()
+        return "PLAY"
+
+    if command == "full":
+        for row in rows: setup_row(row)
+        return "FULL"
     
     if command in rows:
         setup_row(command)
-        return "WHOLE_ROW"
+        return "ROW"
 
     if len(command) == 3 and command[0] in "123" and command[1:3] in notes:
         num_row: int = int(command[0])
@@ -190,11 +273,13 @@ def handle_commands() -> str:
         note: str = command[1:3]
         
         setup_note(row, note)
-        return "SPECIFIC_NOTE"
+        return "NOTE"
 
     return "INVALID"
 
 welcome_message = """Input your command:
+"play": to start playing your song,
+"full": to setup the positions of the notes on all of the rows,
 "first-row": to setup the positions of the notes on the first row,
 "second-row": to setup the positions of the notes on the second row,
 "third-row": to setup the positions of the notes on the third row,
