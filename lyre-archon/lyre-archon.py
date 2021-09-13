@@ -1,9 +1,9 @@
+import mouse
+import keyboard
 import pyautogui
-from pynput.mouse import Listener, Button
-from pynput import keyboard
+import ctypes
 from json import load, dump
 from random import randint
-import ctypes
 
 USER32 = ctypes.windll.user32
 WIDTH, HEIGHT = USER32.GetSystemMetrics(0), USER32.GetSystemMetrics(1)
@@ -52,6 +52,8 @@ def load_setup() -> bool:
                 if len(note_position) != 2: throw()
                 if not isinstance(note_position[0], int) or not isinstance(note_position[1], int): throw()
 
+                notes_positions[row][note] = note_position
+
         print("Setup loaded.\n")
         return True
     except:
@@ -79,71 +81,56 @@ def view_setup() -> None:
 
 def reset_xy() -> None:
     global x, y
-    global message
+    x, y = mouse.get_position()
 
-    x, y = -1, -1
+def reset_message() -> None:
+    global message
     message = ""
 
-def on_click(_x: int, _y: int, button: Button, pressed: int) -> bool:
-    global x, y
+def on_mouse_event(event) -> None:
     global message
 
-    x, y = _x, _y
-
-    if button == Button.left and not pressed:
-        message = "LEFT"
-        return False
-    
-    if button == Button.right:
-        message = "RIGHT"
-        return False
-    
     message = "INVALID"
-    return False
-
-def on_scroll(_x: int, _y: int, dx: int, dy: int) -> bool:
-    global message
-
-    if dy == -1:
-        message = "PREVIOUS"
-        return False
-
-    if dy == 1:
-        message = "NEXT"
-        return False
     
-    return False
+    if isinstance(event, mouse.ButtonEvent):
+        if event.event_type in (mouse.DOWN, mouse.DOUBLE):
+            if event.button == mouse.LEFT:
+                message = "LEFT"
+                return
+            if event.button == mouse.RIGHT:
+                message = "RIGHT"
+                return
+        return
 
-def on_press(key: keyboard.Key) -> bool:
-    global message
-
-    if key in (keyboard.Key.ctrl_r, keyboard.Key.ctrl_l):
-        message = "CTRL"
-        return False
-    
-    if key == keyboard.Key.esc:
-        message = "ESC"
-        return False
-    
-    message = "INVALID"
-    return False
+    if isinstance(event, mouse.WheelEvent):
+        if event.delta == -1:
+            message = "PREVIOUS"
+            return
+        if event.delta == 1:
+            message = "NEXT"
+        return
 
 def setup_row(row: str) -> None:
+    global x, y
+
+    reset_xy()
+    reset_message()
+
+    note: str = notes[0]
+    print("Setting \"%s\" on the \"%s\""%(note, row))
+
+    mouse.hook(on_mouse_event)
+
     i: int = 0
     while i < NUM_NOTES:
-        note: str = notes[i]
+        if message == "INVALID":
+            continue
 
-        if message in ("", "LEFT"):
-            print("Setting \"%s\" on the \"%s\""%(note, row))
-            
-        reset_xy()
-
-        with Listener(on_click=on_click, on_scroll=on_scroll) as listener:
-            listener.join()
-        
         if message == "PREVIOUS" and i > 0:
             i -= 1
             note = notes[i]
+
+            reset_message()
 
             print("\nSwitched to note \"%s\""%note)
             continue
@@ -152,43 +139,56 @@ def setup_row(row: str) -> None:
             i += 1
             note = notes[i]
 
+            reset_message()
+
             print("\nSwitched to note \"%s\""%note)
             continue
-        
-        if message in "RIGHT":
+
+        if message == "RIGHT":
             print("Operation canceled")
             break
 
         if message == "LEFT":
+            x, y = mouse.get_position()
             note = notes[i]
             notes_positions[row][note] = (x, y)
+
+            reset_message()
 
             print("Set \"%s\" on the \"%s\" with the coordinates (%i, %i)"%(note, row, x, y))
 
             i += 1
-        
-        if message in ("", "LEFT"):
-            print()
+            if i < NUM_NOTES:
+                note = notes[i]
+                print("\nSetting \"%s\" on the \"%s\""%(note, row))
+    
+    mouse.unhook(on_mouse_event)
 
 def setup_note(row: str, note: str) -> None:
+    global x, y
+
+    reset_xy()
+    
+    print("Setting \"%s\" on the \"%s\""%(note, row))
+    
+    mouse.hook(on_mouse_event)
+
     while True:
-        if message == "":
-            print("Setting \"%s\" on the \"%s\""%(note, row))
-            
-        reset_xy()
+        if message == "INVALID":
+            continue
 
-        with Listener(on_click=on_click) as listener:
-            listener.join()
+        if message == "RIGHT":
+            print("Operation canceled")
+            return
 
-            if message in "RIGHT":
-                print("Operation canceled")
-                return
+        if message == "LEFT":
+            x, y = mouse.get_position()
+            notes_positions[row][note] = (x, y)
 
-            if message == "LEFT":
-                notes_positions[row][note] = (x, y)
+            reset_message()
 
-                print("Set \"%s\" on the \"%s\" with the coordinates (%i, %i)"%(note, row, x, y))
-                return
+            print("Set \"%s\" on the \"%s\" with the coordinates (%i, %i)"%(note, row, x, y))
+            return
 
 def play_note(row: str, note: str) -> None:
     RADIUS = 10
@@ -204,13 +204,20 @@ def play_note(row: str, note: str) -> None:
     y = min(HEIGHT, y)
 
     pyautogui.click(x, y)
+    # mouse.move(x, y)
+    # mouse.click()
+    # mouse.double_click()
 
 def play_song():
     SONG_PATH: str = "song.txt"
+    
     open(SONG_PATH, "at").close()
     song_file: file = open(SONG_PATH, "rt")
 
+    reset_message()
+
     tabs: tuple = song_file.read().replace("\n", "").split(" ")
+
     i: int = 0
     while i < len(tabs):
         tab: str = tabs[i]
@@ -219,12 +226,14 @@ def play_song():
             i += 1
             continue
 
-        reset_xy()
+        key_event: keyboard.KeyboardEvent = keyboard.read_event()
 
-        with keyboard.Listener(on_press=on_press) as listener:
-            listener.join()
+        if key_event.event_type != keyboard.KEY_DOWN:
+            continue
 
-        if message == "CTRL":
+        key_name = key_event.name
+
+        if "ctrl" in key_name:
             i += 1
 
             row_num = int(tab[0])
@@ -236,7 +245,7 @@ def play_song():
             print(tab, end=" ", flush=True)
             continue
 
-        if message == "ESC":
+        if key_name == "esc":
             print("Operation canceled")
             return
             
@@ -260,7 +269,12 @@ def handle_commands() -> str:
         return "PLAY"
 
     if command == "full":
-        for row in rows: setup_row(row)
+        for row in rows: 
+            setup_row(row)
+            
+            if message == "RIGHT":
+                break
+
         return "FULL"
     
     if command in rows:
