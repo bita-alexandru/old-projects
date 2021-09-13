@@ -24,6 +24,18 @@ notes_positions: dict = {
     } for row in rows
 }
 
+notes_mapping : dict = {
+    "first-row": {
+        note: key for note, key in zip(notes, "qwertyu")
+    },
+    "second-row": {
+        note: key for note, key in zip(notes, "asdfghj")
+    },
+    "third-row": {
+        note: key for note, key in zip(notes, "zxcvbnm")
+    }
+}
+
 x: int = -1
 y: int = -1
 message: str = ""
@@ -191,22 +203,23 @@ def setup_note(row: str, note: str) -> None:
             return
 
 def play_note(row: str, note: str) -> None:
-    RADIUS = 10
-    x, y = notes_positions[row][note]
+    # RADIUS = 10
+    # x, y = notes_positions[row][note]
     
-    dx: int = randint(-RADIUS, RADIUS)
-    dy: int = randint(-RADIUS, RADIUS)
+    # dx: int = randint(-RADIUS, RADIUS)
+    # dy: int = randint(-RADIUS, RADIUS)
 
-    x = max(0, x+dx)
-    x = min(WIDTH, x)
+    # x = max(0, x+dx)
+    # x = min(WIDTH, x)
 
-    y = max(0, y+dy)
-    y = min(HEIGHT, y)
+    # y = max(0, y+dy)
+    # y = min(HEIGHT, y)
 
-    pyautogui.click(x, y)
     # mouse.move(x, y)
-    # mouse.click()
-    # mouse.double_click()
+    # mouse.click(mouse.LEFT)
+
+    key: str = notes_mapping[row][note]
+    keyboard.send(key)
 
 def play_song():
     SONG_PATH: str = "song.txt"
@@ -216,13 +229,19 @@ def play_song():
 
     reset_message()
 
-    tabs: tuple = song_file.read().replace("\n", "").split(" ")
+    tabs: tuple = song_file.read().replace("\n", " ").replace("\t", " ").split(" ")
 
     i: int = 0
     while i < len(tabs):
         tab: str = tabs[i]
 
-        if len(tab) != 3 or tab[0] not in "123" or tab[1:3] not in notes:
+        method: str = "INVALID"
+        if len(tab) == 1 and tab[0] in "qwertyuasdfghjzxcvbnm":
+            method = "KEY"
+        elif len(tab) == 3 and tab[0] in "123" and tab[1:3] in notes:
+            method = "NOTE"
+        
+        if method == "INVALID":
             i += 1
             continue
 
@@ -233,14 +252,17 @@ def play_song():
 
         key_name = key_event.name
 
-        if "ctrl" in key_name:
+        if "shift" in key_name:
             i += 1
 
-            row_num = int(tab[0])
-            row: str = rows[row_num - 1]
-            note: str = tab[1:3]
+            if method == "KEY":
+                keyboard.send(tab)
+            elif method == "NOTE":
+                row_num = int(tab[0])
+                row: str = rows[row_num - 1]
+                note: str = tab[1:3]
 
-            play_note(row, note)
+                play_note(row, note)
             
             print(tab, end=" ", flush=True)
             continue
@@ -254,7 +276,7 @@ def play_song():
 def handle_commands() -> str:
     print(">", end=" ")
     
-    command: str = str(input()).replace(" ", "").lower()
+    command: str = str(input()).replace(" ", "").replace("\t", "").lower()
 
     if command in ("exit", "quit", "q"):
         save_setup()
