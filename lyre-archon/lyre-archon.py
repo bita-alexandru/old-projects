@@ -203,23 +203,20 @@ def setup_note(row: str, note: str) -> None:
             return
 
 def play_note(row: str, note: str) -> None:
-    # RADIUS = 10
-    # x, y = notes_positions[row][note]
+    RADIUS = 10
+    x, y = notes_positions[row][note]
     
-    # dx: int = randint(-RADIUS, RADIUS)
-    # dy: int = randint(-RADIUS, RADIUS)
+    dx: int = randint(-RADIUS, RADIUS)
+    dy: int = randint(-RADIUS, RADIUS)
 
-    # x = max(0, x+dx)
-    # x = min(WIDTH, x)
+    x = max(0, x+dx)
+    x = min(WIDTH, x)
 
-    # y = max(0, y+dy)
-    # y = min(HEIGHT, y)
+    y = max(0, y+dy)
+    y = min(HEIGHT, y)
 
-    # mouse.move(x, y)
-    # mouse.click(mouse.LEFT)
-
-    key: str = notes_mapping[row][note]
-    keyboard.send(key)
+    mouse.move(x, y)
+    mouse.click(mouse.LEFT)
 
 def play_song():
     SONG_PATH: str = "song.txt"
@@ -262,7 +259,8 @@ def play_song():
                 row: str = rows[row_num - 1]
                 note: str = tab[1:3]
 
-                play_note(row, note)
+                key: str = notes_mapping[row][note]
+                keyboard.send(key)
             
             print(tab, end=" ", flush=True)
             continue
