@@ -1,10 +1,12 @@
 # Frère Jacques
 
-2do 2re 2mi 2do
-2do 2re 2mi 2do
-2mi 2fa 2so
-2mi 2fa 2so
-2so 2la 2so 2fa 2mi 2do 
-2so 2la 2so 2fa 2mi 2do 
-2re 3so 2do
-2re 3so 2do
+A S D A
+A S D A
+D F G
+D F G
+G H G F D A 
+G H G F D A 
+S G A
+S G A
+
+DO RE MI FA SO LA SI

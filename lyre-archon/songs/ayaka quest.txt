@@ -1,12 +1,12 @@
 # Ayaka's Quest
 
-3la 2mi 2re 2mi 2so 2mi 2re 2mi 2so 2re
-2do 3la 2do 2re 2mi 2so 2so 2la 2mi
-2mi 2la 2la 2so 2mi 2re 2do 2re 2mi 2re 2do 3la
-2mi 2re 3la 3la 3so 3la 2la 2si 1do 2si 2la 2so 2mi
-2re 2mi 2la 2mi 2fa 2so 2fa 2mi 2fa 2re 2mi
+N D S D G D S D G S
+A N A S D G G H D
+D H H G D S A S D S A N
+D S N N B N H J Q J H G D
+S D H D F G F D F S D
 
-2la 2si 1do 2si 2la 2so 1re 1mi 1so 1re 1do 2si 2la
-2la 2so 2la 2so 2la 2la 1mi 1re 1mi 1so 1la 1re 1mi
-3la 2mi 2re 2mi 2so 2la 2re 2mi
-3la
+H J Q J H G W E T W Q J H
+H G H G H H E W E T Y W E
+N D S D G H S D
+N
