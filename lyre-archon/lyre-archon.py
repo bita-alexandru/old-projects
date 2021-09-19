@@ -1,13 +1,12 @@
-import keyboard
-import pyautogui
+import mido
 import ctypes
-from json import load, dump
+import keyboard
+from time import sleep
 from random import randint
+from json import load, dump
 
 USER32 = ctypes.windll.user32
 WIDTH, HEIGHT = USER32.GetSystemMetrics(0), USER32.GetSystemMetrics(1)
-
-pyautogui.FAILSAFE = False
 
 SETUP_PATH: str = "setup.json"
 
@@ -20,7 +19,9 @@ key_map: dict = {
     rows[2]: "ZXCVBNM"
 }
 
-notes_map: dict = dict()
+note_map: dict = dict()
+
+transform = "IGNORE" # "SHARP" / "FLAT"
 
 def load_setup() -> bool:
     global notes_positions
@@ -177,9 +178,52 @@ def play_script() -> None:
             
     print()
 
-def play_midi() -> None:
+def get_key_from_note(note: int) -> str:
+    while True:
+        if note > 83:
+            note -= 12
+        elif note < 48:
+            note += 12
+        break
 
-    return
+    if note not in note_map:
+        if transform == "IGNORE":
+            return ""
+        
+        if transform == "SHARP":
+            note += 1
+        elif transform == "FLAT":
+            note -= 1
+    
+    return note_map[note]
+
+def play_midi() -> None:
+    MIDI_FILE = "song.mid"
+
+    try:
+        mid: mido.MidiFile = mido.MidiFile(MIDI_FILE)
+
+        sleep(3)
+
+        for msg in mid.play():
+            if msg.type != "note_on":
+                continue
+
+            key: str = get_key_from_note(msg.note)
+
+            if len(key) == 0:
+                continue
+
+            keyboard.send(key.lower())
+
+            print(key, end=" ", flush=True)
+        
+        print()
+        
+    except FileNotFoundError:
+        print("File not found.")
+    except Exception as e:
+        print("File is not a valid MIDI.")
 
 def handle_commands() -> str:
     print(">", end=" ")
@@ -195,7 +239,8 @@ def handle_commands() -> str:
         return "SAVE"
 
     if command == "play":
-        play_script()
+        # play_script()
+        play_midi()
         return "PLAY"
 
     if command == "setup":
@@ -223,14 +268,14 @@ def reset_key_map() -> None:
         rows[2]: "zxcvbnm"
     }
 
-def init_notes_map() -> None:
-    global notes_map
+def init_note_map() -> None:
+    global note_map
 
     keys: tuple = (
     #   DO, RE, MI, FA, SO, LA, SI
-        83, 81, 79, 77, 76, 74, 72,
-        71, 69, 67, 65, 64, 62, 60,
-        59, 57, 55, 53, 52, 50, 48
+        72, 74, 76, 77, 79, 81, 83,
+        60, 62, 64, 65, 67, 69, 71,
+        48, 50, 52, 53, 55, 57, 59
         )
 
     for i_row in range(3):
@@ -238,7 +283,7 @@ def init_notes_map() -> None:
             key: int = keys[i_row*7 + i_key]
             row: str = rows[i_row]
 
-            notes_map[key] = key_map[row][i_key]
+            note_map[key] = key_map[row][i_key]
 
 if __name__ == "__main__":
     if not load_setup():
@@ -246,7 +291,7 @@ if __name__ == "__main__":
 
     view_setup()
 
-    init_notes_map()
+    init_note_map()
 
     welcome()
 
