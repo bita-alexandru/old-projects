@@ -13,8 +13,9 @@ namespace MP3_Player
         // vector de perechi <nume melodie, locatie>
         private List<Tuple<string, string>> songs = new List<Tuple<string, string>>();
 
-        // dictionat <playlist, vector de perechi <nume melodie, locatie>>
+        // dictionar <playlist, vector de perechi <nume melodie, locatie>>
         private Dictionary<string, List<Tuple<string, string>>> playlists = new Dictionary<string, List<Tuple<string, string>>>();
+        private Dictionary<string, int> indexes = new Dictionary<string, int>();
 
         // un timer pt redarea melodiei urmatoare la sfarsitul melodiei redate actual
         private Timer timer = new Timer();
@@ -93,7 +94,11 @@ namespace MP3_Player
                             foreach (Tuple<string, string> song in _songs)
                             {
                                 listBoxMelodii.Items.Add(song.Item1);
-                                listBoxMelodii.SelectedIndex = listBoxMelodii.Items.Count - 1;
+                            }
+
+                            if (listBoxMelodii.Items.Count > 0)
+                            {
+                                listBoxMelodii.SelectedIndex = 0;
                             }
 
                             continue;
@@ -166,7 +171,7 @@ namespace MP3_Player
 
                 writer.Close();
 
-                MessageBox.Show("Salvarea playlist-urilor a reușit.", "Succes", MessageBoxButtons.OK);
+                //MessageBox.Show("Salvarea playlist-urilor a reușit.", "Succes", MessageBoxButtons.OK);
             }
             catch (Exception)
             {
@@ -202,8 +207,11 @@ namespace MP3_Player
 
                 // adaugam numele melodiei in lista
                 listBoxMelodii.Items.Add(name);
-                // reactualizam selectia
-                listBoxMelodii.SelectedIndex = listBoxMelodii.Items.Count - 1;
+
+                if (listBoxMelodii.Items.Count == 1)
+                {
+                    listBoxMelodii.SelectedIndex = 0;
+                }
             }
             catch (Exception exception)
             {
@@ -222,7 +230,7 @@ namespace MP3_Player
                 // numele melodiei + [playlist-ul din care provine]
                 // daca sirul obtinut mai sus este identic cu sirul afisat pe ecran (melodia care se reda actual)
                 // atunci oprim melodia inainte sa o stergem
-                if (song + " [" + playlist + "]" == labelMelodie.Text)
+                if (GetTitle(song) == labelMelodie.Text)
                 {
                     windowsMediaPlayer.Ctlcontrols.stop();
 
@@ -250,21 +258,30 @@ namespace MP3_Player
             }
         }
 
-        private void PlaySong()
+        private void PlaySong(string playlist = "", string title = "", string url = "")
         {
             try
             {
-                string song = listBoxMelodii.Items[listBoxMelodii.SelectedIndex].ToString();
-                string location = GetLocation(song);
-
-                // pornim melodia
                 windowsMediaPlayer.Ctlcontrols.stop();
-                windowsMediaPlayer.URL = location;
+
+                string song;
+                if (url.Length == 0)
+                {
+                    song = listBoxMelodii.Items[listBoxMelodii.SelectedIndex].ToString();
+
+                    string location = GetLocation(song);
+                    windowsMediaPlayer.URL = location;
+                }
+                else
+                {
+                    song = title;
+                    windowsMediaPlayer.URL = url;
+                }
+                
                 windowsMediaPlayer.Ctlcontrols.play();
 
-                string playlist = listBoxPlaylisturi.Items[listBoxPlaylisturi.SelectedIndex].ToString();
                 // afiseaza numele melodiei si numele playlist-ului din care provine
-                SetTitle(song + " [" + playlist + "]");
+                SetTitle(GetTitle(song, playlist));
 
                 // activeaza butoanele
                 EnableControls(true);
@@ -286,24 +303,70 @@ namespace MP3_Player
 
         private void NextSong(bool forward = true)
         {
-            int count = listBoxMelodii.Items.Count;
+            string playlist = GetPlaylist();
+            string current = listBoxPlaylisturi.Items[listBoxPlaylisturi.SelectedIndex].ToString();
 
-            if (count > 1)
+            if (playlist == "")
             {
-                int index = listBoxMelodii.FindString(labelMelodie.Text.Split('[')[0].Trim());
-
-                // mutam catre melodia din fata
-                if (forward)
+                playlist = current;
+            }
+            
+            if (listBoxPlaylisturi.FindString(playlist) != ListBox.NoMatches)
+            {
+                string song = GetSong();
+                
+                if (song == "")
                 {
-                    listBoxMelodii.SelectedIndex = (index + 1) % count;
-                }
-                // mutam catre melodia din spate
-                else
-                {
-                    listBoxMelodii.SelectedIndex = (index % count + count - 1) % count;
+                    if (forward && listBoxMelodii.SelectedIndex < playlists[playlist].Count - 1)
+                    {
+                        listBoxMelodii.SelectedIndex += 1;
+                        PlaySong(playlist);
+
+                        return;
+                    }
+                    else if (!forward && listBoxMelodii.SelectedIndex > 0)
+                    {
+                        listBoxMelodii.SelectedIndex -= 1;
+                        PlaySong(playlist);
+
+                        return;
+                    }
                 }
 
-                PlaySong();
+                for (int i = 0; i < playlists[playlist].Count; i++)
+                {
+                    if (playlists[playlist][i].Item1 == song)
+                    {
+                        if (forward && i < playlists[playlist].Count - 1)
+                        {
+                            if (playlist == current)
+                            {
+                                listBoxMelodii.SelectedIndex += 1;
+                                PlaySong();
+                            }
+                            else
+                            {
+                                PlaySong(playlist, playlists[playlist][i + 1].Item1, playlists[playlist][i + 1].Item2);
+                                indexes[playlist] = i + 1;
+                            }
+                        }
+                        else if (!forward && i > 0)
+                        {
+                            if (playlist == current)
+                            {
+                                listBoxMelodii.SelectedIndex -= 1;
+                                PlaySong();
+                            }
+                            else
+                            {
+                                PlaySong(playlist, playlists[playlist][i - 1].Item1, playlists[playlist][i - 1].Item2);
+                                indexes[playlist] = i - 1;
+                            }
+                        }
+
+                        return;
+                    }
+                }
             }
         }
 
@@ -360,6 +423,9 @@ namespace MP3_Player
 
         private void listBoxMelodii_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string playlist = listBoxPlaylisturi.Items[listBoxPlaylisturi.SelectedIndex].ToString();
+            indexes[playlist] = listBoxMelodii.SelectedIndex;
+
             // exista melodii in playlist -> activam butonul de redare
             if (listBoxMelodii.Items.Count > 0)
             {
@@ -460,7 +526,20 @@ namespace MP3_Player
 
             duration.Stop();
 
-            NextSong();
+            if (buttonRepeta.Text == "Nu repeta")
+            {
+                int index = listBoxMelodii.FindString(GetSong());
+                if (index != ListBox.NoMatches)
+                {
+                    listBoxMelodii.SelectedIndex = index;
+                }
+
+                PlaySong();
+            }
+            else
+            {
+                NextSong();
+            }
         }
 
         private void windowsMediaPlayer_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
@@ -548,6 +627,39 @@ namespace MP3_Player
             }
         }
 
+        private string GetSong()
+        {
+            if (!labelMelodie.Text.Contains("["))
+            {
+                return "";
+            }
+
+            return labelMelodie.Text.Split('[')[0].Trim();
+        }
+
+        private string GetPlaylist()
+        {
+            if (labelMelodie.Text.Split('[').Length < 2)
+            {
+                return "";
+            }
+
+            string playlist = labelMelodie.Text.Split('[')[1].Trim();
+            playlist = playlist.Remove(playlist.Length - 1, 1);
+
+            return playlist;
+        }
+
+        private string GetTitle(string song, string playlist="")
+        {
+            if (playlist == "")
+            {
+                playlist = listBoxPlaylisturi.Items[listBoxPlaylisturi.SelectedIndex].ToString();
+            }
+
+            return song + " [" + playlist + "]";
+        }
+
         private void buttonSterge_Click(object sender, EventArgs e)
         {
             string playlist = listBoxPlaylisturi.Items[listBoxPlaylisturi.SelectedIndex].ToString();
@@ -560,22 +672,25 @@ namespace MP3_Player
 
                 // stergem din lista grafica
                 int index = listBoxPlaylisturi.SelectedIndex;
+                listBoxPlaylisturi.SelectedIndex -= 1;
+                
                 listBoxPlaylisturi.Items.RemoveAt(index);
 
-                // actualizam selectia pe lista
-                int count = listBoxPlaylisturi.Items.Count;
-                if (count > 0) listBoxPlaylisturi.SelectedIndex = (index % count + count - 1) % count;
+                if (GetPlaylist() == playlist)
+                {
+                    windowsMediaPlayer.Ctlcontrols.stop();
+                }
             }
         }
 
         private void listBoxPlaylisturi_SelectedValueChanged(object sender, EventArgs e)
         {
+            string name = listBoxPlaylisturi.Items[listBoxPlaylisturi.SelectedIndex].ToString();
+
             // actualizeaza lista de melodii asociate playlist-ului curent
             listBoxMelodii.Items.Clear();
 
             if (listBoxPlaylisturi.SelectedIndex < 0) listBoxPlaylisturi.SelectedIndex = 0;
-
-            string name = listBoxPlaylisturi.Items[listBoxPlaylisturi.SelectedIndex].ToString();
 
             if (!playlists.ContainsKey(name)) return;
 
@@ -586,21 +701,25 @@ namespace MP3_Player
             foreach (Tuple<string, string> song in songs)
             {
                 listBoxMelodii.Items.Add(song.Item1);
-                listBoxMelodii.SelectedIndex = listBoxMelodii.Items.Count - 1;
+            }
+
+            if (indexes.ContainsKey(name))
+            {
+                listBoxMelodii.SelectedIndex = indexes[name];
+            }
+            else if (listBoxMelodii.Items.Count > 0)
+            {
+                listBoxMelodii.SelectedIndex = 0;
             }
         }
 
         private void menuItemSalveaza_Click(object sender, EventArgs e)
         {
-            //string[] names = listBoxPlaylisturi.Items.OfType<string>().ToArray();
-            //Salvare.Salvare.Save(names, playlists);
             Save();
         }
 
         private void MP3_Player_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //string[] names = listBoxPlaylisturi.Items.OfType<string>().ToArray();
-            //Salvare.Salvare.Save(names, playlists);
             Save();
         }
 
@@ -613,6 +732,130 @@ namespace MP3_Player
             catch (Exception)
             {
                 MessageBox.Show("Nu a putut fi gasit fisierul de ajutor.", "Eroare", MessageBoxButtons.OK);
+            }
+        }
+
+        private void buttonAmesteca_Click(object sender, EventArgs e)
+        {
+            List<Tuple<string, string>> oldOrder = new List<Tuple<string, string>>(songs);
+            List<Tuple<string, string>> newOrder = new List<Tuple<string, string>>();
+
+            Random random = new Random();
+
+            while (oldOrder.Count > 0)
+            {
+                int i = random.Next(0, oldOrder.Count);
+
+                newOrder.Add(oldOrder[i]);
+                oldOrder.RemoveAt(i);
+            }
+
+            listBoxMelodii.Items.Clear();
+
+            string playlist = listBoxPlaylisturi.Items[listBoxPlaylisturi.SelectedIndex].ToString();
+            playlists[playlist] = newOrder;
+
+            bool selection = false;
+
+            for (int i = 0; i < newOrder.Count; i++)
+            {
+                string song = newOrder[i].Item1;
+
+                listBoxMelodii.Items.Add(song);
+
+                if (GetTitle(song) == labelMelodie.Text)
+                {
+                    listBoxMelodii.SelectedIndex = i;
+                    selection = true;
+                }
+            }
+
+            if (!selection)
+            {
+                listBoxMelodii.SelectedIndex = 0;
+            }
+        }
+
+        private void buttonRepeta_Click(object sender, EventArgs e)
+        {
+            if (buttonRepeta.Text == "Repetă")
+            {
+                buttonRepeta.Text = "Nu repeta";
+            }
+            else
+            {
+                buttonRepeta.Text = "Repetă";
+            }
+        }
+
+        private void buttonSus_Click(object sender, EventArgs e)
+        {
+            int index = listBoxMelodii.SelectedIndex;
+
+            if (index > 0)
+            {
+                string a = listBoxMelodii.Items[index].ToString();
+                string b = listBoxMelodii.Items[index - 1].ToString();
+
+                listBoxMelodii.Items[index] = b;
+                listBoxMelodii.Items[index - 1] = a;
+                listBoxMelodii.SelectedIndex -= 1;
+
+                string playlist = listBoxPlaylisturi.Items[listBoxPlaylisturi.SelectedIndex].ToString();
+
+                Tuple<string, string> x = songs[index];
+                Tuple<string, string> y = songs[index - 1];
+
+                songs[index] = y;
+                songs[index - 1] = x;
+                playlists[playlist] = songs;
+            }
+        }
+
+        private void buttonJos_Click(object sender, EventArgs e)
+        {
+            int index = listBoxMelodii.SelectedIndex;
+
+            if (index < listBoxMelodii.Items.Count - 1)
+            {
+                string a = listBoxMelodii.Items[index].ToString();
+                string b = listBoxMelodii.Items[index + 1].ToString();
+
+                listBoxMelodii.Items[index] = b;
+                listBoxMelodii.Items[index + 1] = a;
+                listBoxMelodii.SelectedIndex += 1;
+
+                string playlist = listBoxPlaylisturi.Items[listBoxPlaylisturi.SelectedIndex].ToString();
+
+                Tuple<string, string> x = songs[index];
+                Tuple<string, string> y = songs[index + 1];
+
+                songs[index] = y;
+                songs[index + 1] = x;
+                playlists[playlist] = songs;
+            }
+        }
+
+        private void listBoxMelodii_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (listBoxMelodii.Items.Count > 0)
+            {
+                int index = listBoxMelodii.IndexFromPoint(e.Location);
+                if (index != ListBox.NoMatches)
+                {
+                    PlaySong();
+                }
+            }
+        }
+
+        private void labelMelodie_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            string playlist = GetPlaylist();
+            int index = listBoxPlaylisturi.FindString(playlist);
+
+            if (index != ListBox.NoMatches)
+            {
+                listBoxPlaylisturi.SelectedIndex = index;
             }
         }
     }
