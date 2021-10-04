@@ -43,7 +43,6 @@ namespace MP3_Player
         {
             buttonPauza.Enabled = enabled;
             buttonRedare.Enabled = enabled;
-            buttonOprire.Enabled = enabled;
 
             labelDuratie.Text = "";
         }
@@ -89,7 +88,7 @@ namespace MP3_Player
                         {
                             playlists[playlist] = _songs;
                             songs = _songs;
-                                
+
                             // introdu numele melodiilor in lista
                             foreach (Tuple<string, string> song in _songs)
                             {
@@ -177,7 +176,7 @@ namespace MP3_Player
             {
                 MessageBox.Show("Salvarea playlist-urilor a eșuat.", "Eroare", MessageBoxButtons.OK);
             }
-            
+
         }
 
         private string GetLocation(string name)
@@ -224,8 +223,6 @@ namespace MP3_Player
             if (listBoxMelodii.Items.Count > 0)
             {
                 string song = listBoxMelodii.Items[listBoxMelodii.SelectedIndex].ToString();
-                string location = GetLocation(song);
-                string playlist = listBoxPlaylisturi.Items[listBoxPlaylisturi.SelectedIndex].ToString();
 
                 // numele melodiei + [playlist-ul din care provine]
                 // daca sirul obtinut mai sus este identic cu sirul afisat pe ecran (melodia care se reda actual)
@@ -236,8 +233,7 @@ namespace MP3_Player
 
                     buttonPauza.Enabled = false;
                     buttonPauza.Text = "Pauză";
-
-                    buttonOprire.Enabled = false;
+                    buttonRedare.Text = "Redare";
 
                     SetTitle("Momentan nu se redă nicio melodie");
 
@@ -277,7 +273,7 @@ namespace MP3_Player
                     song = title;
                     windowsMediaPlayer.URL = url;
                 }
-                
+
                 windowsMediaPlayer.Ctlcontrols.play();
 
                 // afiseaza numele melodiei si numele playlist-ului din care provine
@@ -289,6 +285,8 @@ namespace MP3_Player
                 buttonPauza.Text = "Pauză";
 
                 duration.Start();
+
+                buttonRedare.Text = "Oprire";
             }
             catch (Exception)
             {
@@ -310,11 +308,11 @@ namespace MP3_Player
             {
                 playlist = current;
             }
-            
+
             if (listBoxPlaylisturi.FindString(playlist) != ListBox.NoMatches)
             {
                 string song = GetSong();
-                
+
                 if (song == "")
                 {
                     if (forward && listBoxMelodii.SelectedIndex < playlists[playlist].Count - 1)
@@ -341,7 +339,7 @@ namespace MP3_Player
                         {
                             if (playlist == current)
                             {
-                                listBoxMelodii.SelectedIndex += 1;
+                                listBoxMelodii.SelectedIndex = i + 1;
                                 PlaySong();
                             }
                             else
@@ -354,7 +352,7 @@ namespace MP3_Player
                         {
                             if (playlist == current)
                             {
-                                listBoxMelodii.SelectedIndex -= 1;
+                                listBoxMelodii.SelectedIndex = i - 1;
                                 PlaySong();
                             }
                             else
@@ -400,7 +398,24 @@ namespace MP3_Player
 
         private void buttonRedare_Click(object sender, EventArgs e)
         {
-            PlaySong();
+            if (buttonRedare.Text == "Redare")
+            {
+                PlaySong();
+            }
+            else
+            {
+                windowsMediaPlayer.Ctlcontrols.stop();
+
+                buttonPauza.Enabled = false;
+                buttonPauza.Text = "Pauză";
+
+                buttonRedare.Text = "Redare";
+
+                SetTitle("Momentan nu se redă nicio melodie");
+
+                labelDuratie.Text = "";
+                duration.Stop();
+            }
         }
 
         private void buttonPauza_Click(object sender, EventArgs e)
@@ -505,21 +520,6 @@ namespace MP3_Player
             NextSong(false);
         }
 
-        private void buttonOprire_Click(object sender, EventArgs e)
-        {
-            windowsMediaPlayer.Ctlcontrols.stop();
-
-            buttonPauza.Enabled = false;
-            buttonPauza.Text = "Pauză";
-
-            buttonOprire.Enabled = false;
-
-            SetTitle("Momentan nu se redă nicio melodie");
-
-            labelDuratie.Text = "";
-            duration.Stop();
-        }
-
         private void timer_Tick(object sender, EventArgs e)
         {
             timer.Stop();
@@ -594,11 +594,11 @@ namespace MP3_Player
             try
             {
                 if (windowsMediaPlayer.playState == WMPPlayState.wmppsPlaying)
-                {    
+                {
                     labelDuratie.Text = windowsMediaPlayer.Ctlcontrols.currentPositionString + "/" + windowsMediaPlayer.currentMedia.durationString;
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return;
             }
@@ -650,7 +650,7 @@ namespace MP3_Player
             return playlist;
         }
 
-        private string GetTitle(string song, string playlist="")
+        private string GetTitle(string song, string playlist = "")
         {
             if (playlist == "")
             {
@@ -673,7 +673,7 @@ namespace MP3_Player
                 // stergem din lista grafica
                 int index = listBoxPlaylisturi.SelectedIndex;
                 listBoxPlaylisturi.SelectedIndex -= 1;
-                
+
                 listBoxPlaylisturi.Items.RemoveAt(index);
 
                 if (GetPlaylist() == playlist)
@@ -851,11 +851,24 @@ namespace MP3_Player
         private void labelMelodie_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             string playlist = GetPlaylist();
+            string song = GetSong();
+
             int index = listBoxPlaylisturi.FindString(playlist);
 
-            if (index != ListBox.NoMatches)
+            if (playlist != "" && index != ListBox.NoMatches)
             {
                 listBoxPlaylisturi.SelectedIndex = index;
+
+                for (int i = 0; i < listBoxMelodii.Items.Count; i++)
+                {
+                    string name = listBoxMelodii.Items[i].ToString();
+
+                    if (name == song)
+                    {
+                        listBoxMelodii.SelectedIndex = i;
+                        return;
+                    }
+                }
             }
         }
 
@@ -884,21 +897,6 @@ namespace MP3_Player
                 e.Handled = true;
                 buttonCreeaza_Click(sender, e);
             }
-        }
-
-        private void MP3_Player_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelDuratie_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelMelodie_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

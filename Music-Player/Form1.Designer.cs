@@ -55,23 +55,20 @@ namespace MP3_Player
             this.listBoxMelodii = new System.Windows.Forms.ListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.buttonRepeta = new System.Windows.Forms.Button();
-            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.buttonInapoi = new System.Windows.Forms.Button();
-            this.buttonInainte = new System.Windows.Forms.Button();
-            this.buttonRedare = new System.Windows.Forms.Button();
-            this.buttonOprire = new System.Windows.Forms.Button();
-            this.buttonPauza = new System.Windows.Forms.Button();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBoxMelodie = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.labelDuratie = new System.Windows.Forms.TextBox();
             this.labelMelodie = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonInapoi = new System.Windows.Forms.Button();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonPauza = new System.Windows.Forms.Button();
+            this.buttonRepeta = new System.Windows.Forms.Button();
+            this.buttonRedare = new System.Windows.Forms.Button();
+            this.buttonInainte = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.windowsMediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
+            this.pictureBoxMelodie = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -84,15 +81,13 @@ namespace MP3_Player
             this.tableLayoutPanel12.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
+            this.tableLayoutPanel11.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
-            this.tableLayoutPanel8.SuspendLayout();
-            this.tableLayoutPanel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMelodie)).BeginInit();
-            this.tableLayoutPanel11.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.windowsMediaPlayer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMelodie)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -103,7 +98,7 @@ namespace MP3_Player
             this.menuItemAjutor});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1015, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(981, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -129,7 +124,7 @@ namespace MP3_Player
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(298, 655);
+            this.groupBox1.Size = new System.Drawing.Size(288, 523);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Playlist-uri personale";
@@ -151,7 +146,7 @@ namespace MP3_Player
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(292, 634);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(282, 502);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // listBoxPlaylisturi
@@ -162,9 +157,9 @@ namespace MP3_Player
             this.listBoxPlaylisturi.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxPlaylisturi.FormattingEnabled = true;
             this.listBoxPlaylisturi.ItemHeight = 20;
-            this.listBoxPlaylisturi.Location = new System.Drawing.Point(3, 66);
+            this.listBoxPlaylisturi.Location = new System.Drawing.Point(3, 53);
             this.listBoxPlaylisturi.Name = "listBoxPlaylisturi";
-            this.listBoxPlaylisturi.Size = new System.Drawing.Size(286, 501);
+            this.listBoxPlaylisturi.Size = new System.Drawing.Size(276, 395);
             this.listBoxPlaylisturi.TabIndex = 8;
             this.listBoxPlaylisturi.SelectedValueChanged += new System.EventHandler(this.listBoxPlaylisturi_SelectedValueChanged);
             // 
@@ -178,11 +173,11 @@ namespace MP3_Player
             this.tableLayoutPanel10.Controls.Add(this.buttonAmesteca, 0, 0);
             this.tableLayoutPanel10.Controls.Add(this.buttonSterge, 0, 0);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 573);
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 454);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 1;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(286, 35);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(276, 35);
             this.tableLayoutPanel10.TabIndex = 11;
             // 
             // buttonAmesteca
@@ -192,9 +187,9 @@ namespace MP3_Player
             this.buttonAmesteca.BackColor = System.Drawing.Color.SeaShell;
             this.buttonAmesteca.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonAmesteca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonAmesteca.Location = new System.Drawing.Point(146, 3);
+            this.buttonAmesteca.Location = new System.Drawing.Point(141, 3);
             this.buttonAmesteca.Name = "buttonAmesteca";
-            this.buttonAmesteca.Size = new System.Drawing.Size(137, 29);
+            this.buttonAmesteca.Size = new System.Drawing.Size(132, 29);
             this.buttonAmesteca.TabIndex = 11;
             this.buttonAmesteca.Text = "Amestecă";
             this.buttonAmesteca.UseVisualStyleBackColor = false;
@@ -209,7 +204,7 @@ namespace MP3_Player
             this.buttonSterge.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSterge.Location = new System.Drawing.Point(3, 3);
             this.buttonSterge.Name = "buttonSterge";
-            this.buttonSterge.Size = new System.Drawing.Size(137, 29);
+            this.buttonSterge.Size = new System.Drawing.Size(132, 29);
             this.buttonSterge.TabIndex = 10;
             this.buttonSterge.Text = "Șterge";
             this.buttonSterge.UseVisualStyleBackColor = false;
@@ -229,7 +224,7 @@ namespace MP3_Player
             this.tableLayoutPanel13.Name = "tableLayoutPanel13";
             this.tableLayoutPanel13.RowCount = 1;
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel13.Size = new System.Drawing.Size(286, 35);
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(276, 35);
             this.tableLayoutPanel13.TabIndex = 12;
             // 
             // buttonCreeaza
@@ -239,9 +234,9 @@ namespace MP3_Player
             this.buttonCreeaza.BackColor = System.Drawing.Color.SeaShell;
             this.buttonCreeaza.Dock = System.Windows.Forms.DockStyle.Top;
             this.buttonCreeaza.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCreeaza.Location = new System.Drawing.Point(203, 3);
+            this.buttonCreeaza.Location = new System.Drawing.Point(196, 3);
             this.buttonCreeaza.Name = "buttonCreeaza";
-            this.buttonCreeaza.Size = new System.Drawing.Size(80, 29);
+            this.buttonCreeaza.Size = new System.Drawing.Size(77, 29);
             this.buttonCreeaza.TabIndex = 8;
             this.buttonCreeaza.Text = "Creează";
             this.buttonCreeaza.UseVisualStyleBackColor = false;
@@ -249,11 +244,11 @@ namespace MP3_Player
             // 
             // textBoxPlaylist
             // 
-            this.textBoxPlaylist.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBoxPlaylist.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxPlaylist.ForeColor = System.Drawing.Color.DimGray;
             this.textBoxPlaylist.Location = new System.Drawing.Point(3, 3);
             this.textBoxPlaylist.Name = "textBoxPlaylist";
-            this.textBoxPlaylist.Size = new System.Drawing.Size(194, 22);
+            this.textBoxPlaylist.Size = new System.Drawing.Size(187, 22);
             this.textBoxPlaylist.TabIndex = 6;
             this.textBoxPlaylist.Text = "Nume...";
             this.textBoxPlaylist.Enter += new System.EventHandler(this.textBoxPlaylist_Enter);
@@ -266,9 +261,9 @@ namespace MP3_Player
             this.groupBox2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.groupBox2.Controls.Add(this.tableLayoutPanel3);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(713, 3);
+            this.groupBox2.Location = new System.Drawing.Point(689, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(299, 655);
+            this.groupBox2.Size = new System.Drawing.Size(289, 523);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Playlist curent";
@@ -289,7 +284,7 @@ namespace MP3_Player
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(293, 634);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(283, 502);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // textBoxCautare
@@ -298,7 +293,7 @@ namespace MP3_Player
             this.textBoxCautare.ForeColor = System.Drawing.Color.DimGray;
             this.textBoxCautare.Location = new System.Drawing.Point(3, 3);
             this.textBoxCautare.Name = "textBoxCautare";
-            this.textBoxCautare.Size = new System.Drawing.Size(287, 22);
+            this.textBoxCautare.Size = new System.Drawing.Size(277, 22);
             this.textBoxCautare.TabIndex = 16;
             this.textBoxCautare.Text = "Căutare...";
             this.textBoxCautare.TextChanged += new System.EventHandler(this.textBoxCautare_TextChanged);
@@ -311,9 +306,9 @@ namespace MP3_Player
             this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel2.Controls.Add(this.tableLayoutPanel9);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(3, 509);
+            this.panel2.Location = new System.Drawing.Point(3, 404);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(287, 76);
+            this.panel2.Size = new System.Drawing.Size(277, 76);
             this.panel2.TabIndex = 10;
             // 
             // tableLayoutPanel9
@@ -332,8 +327,8 @@ namespace MP3_Player
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 1;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(287, 76);
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 76F));
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(277, 76);
             this.tableLayoutPanel9.TabIndex = 8;
             // 
             // buttonStergeMelodie
@@ -343,9 +338,9 @@ namespace MP3_Player
             this.buttonStergeMelodie.BackColor = System.Drawing.Color.SeaShell;
             this.buttonStergeMelodie.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonStergeMelodie.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonStergeMelodie.Location = new System.Drawing.Point(189, 3);
+            this.buttonStergeMelodie.Location = new System.Drawing.Point(182, 3);
             this.buttonStergeMelodie.Name = "buttonStergeMelodie";
-            this.buttonStergeMelodie.Size = new System.Drawing.Size(95, 70);
+            this.buttonStergeMelodie.Size = new System.Drawing.Size(92, 70);
             this.buttonStergeMelodie.TabIndex = 8;
             this.buttonStergeMelodie.Text = "Șterge";
             this.buttonStergeMelodie.UseVisualStyleBackColor = false;
@@ -360,12 +355,12 @@ namespace MP3_Player
             this.tableLayoutPanel12.Controls.Add(this.buttonJos, 0, 1);
             this.tableLayoutPanel12.Controls.Add(this.buttonSus, 0, 0);
             this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel12.Location = new System.Drawing.Point(103, 3);
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(99, 3);
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
             this.tableLayoutPanel12.RowCount = 2;
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel12.Size = new System.Drawing.Size(80, 70);
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(77, 70);
             this.tableLayoutPanel12.TabIndex = 9;
             // 
             // buttonJos
@@ -375,7 +370,7 @@ namespace MP3_Player
             this.buttonJos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonJos.Location = new System.Drawing.Point(3, 38);
             this.buttonJos.Name = "buttonJos";
-            this.buttonJos.Size = new System.Drawing.Size(74, 29);
+            this.buttonJos.Size = new System.Drawing.Size(71, 29);
             this.buttonJos.TabIndex = 11;
             this.buttonJos.Text = "↓";
             this.buttonJos.UseVisualStyleBackColor = false;
@@ -390,7 +385,7 @@ namespace MP3_Player
             this.buttonSus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSus.Location = new System.Drawing.Point(3, 3);
             this.buttonSus.Name = "buttonSus";
-            this.buttonSus.Size = new System.Drawing.Size(74, 29);
+            this.buttonSus.Size = new System.Drawing.Size(71, 29);
             this.buttonSus.TabIndex = 9;
             this.buttonSus.Text = "↑";
             this.buttonSus.UseVisualStyleBackColor = false;
@@ -405,7 +400,7 @@ namespace MP3_Player
             this.buttonAdaugaMelodie.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonAdaugaMelodie.Location = new System.Drawing.Point(3, 3);
             this.buttonAdaugaMelodie.Name = "buttonAdaugaMelodie";
-            this.buttonAdaugaMelodie.Size = new System.Drawing.Size(94, 70);
+            this.buttonAdaugaMelodie.Size = new System.Drawing.Size(90, 70);
             this.buttonAdaugaMelodie.TabIndex = 5;
             this.buttonAdaugaMelodie.Text = "Adaugă";
             this.buttonAdaugaMelodie.UseVisualStyleBackColor = false;
@@ -419,9 +414,9 @@ namespace MP3_Player
             this.listBoxMelodii.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxMelodii.FormattingEnabled = true;
             this.listBoxMelodii.ItemHeight = 20;
-            this.listBoxMelodii.Location = new System.Drawing.Point(3, 66);
+            this.listBoxMelodii.Location = new System.Drawing.Point(3, 53);
             this.listBoxMelodii.Name = "listBoxMelodii";
-            this.listBoxMelodii.Size = new System.Drawing.Size(287, 437);
+            this.listBoxMelodii.Size = new System.Drawing.Size(277, 345);
             this.listBoxMelodii.TabIndex = 7;
             this.listBoxMelodii.SelectedIndexChanged += new System.EventHandler(this.listBoxMelodii_SelectedIndexChanged);
             this.listBoxMelodii.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxMelodii_MouseDoubleClick);
@@ -432,9 +427,9 @@ namespace MP3_Player
             this.groupBox3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.groupBox3.Controls.Add(this.tableLayoutPanel2);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(307, 3);
+            this.groupBox3.Location = new System.Drawing.Point(297, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(400, 655);
+            this.groupBox3.Size = new System.Drawing.Size(386, 523);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Melodia curentă";
@@ -445,160 +440,16 @@ namespace MP3_Player
             this.tableLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.panel3, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel6, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel5, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 18);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(394, 634);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(380, 502);
             this.tableLayoutPanel2.TabIndex = 0;
-            // 
-            // panel3
-            // 
-            this.panel3.AutoSize = true;
-            this.panel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel3.Controls.Add(this.tableLayoutPanel5);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(3, 485);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(388, 146);
-            this.panel3.TabIndex = 0;
-            // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.AutoSize = true;
-            this.tableLayoutPanel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel5.ColumnCount = 3;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel7, 1, 0);
-            this.tableLayoutPanel5.Controls.Add(this.buttonOprire, 2, 0);
-            this.tableLayoutPanel5.Controls.Add(this.buttonPauza, 0, 0);
-            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 1;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(388, 146);
-            this.tableLayoutPanel5.TabIndex = 13;
-            // 
-            // tableLayoutPanel7
-            // 
-            this.tableLayoutPanel7.AutoSize = true;
-            this.tableLayoutPanel7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel7.ColumnCount = 1;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Controls.Add(this.buttonRepeta, 0, 2);
-            this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel8, 0, 1);
-            this.tableLayoutPanel7.Controls.Add(this.buttonRedare, 0, 0);
-            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(132, 3);
-            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 3;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(123, 140);
-            this.tableLayoutPanel7.TabIndex = 0;
-            // 
-            // buttonRepeta
-            // 
-            this.buttonRepeta.BackColor = System.Drawing.Color.SeaShell;
-            this.buttonRepeta.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonRepeta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonRepeta.Location = new System.Drawing.Point(3, 94);
-            this.buttonRepeta.Name = "buttonRepeta";
-            this.buttonRepeta.Size = new System.Drawing.Size(117, 43);
-            this.buttonRepeta.TabIndex = 3;
-            this.buttonRepeta.Text = "Repetă";
-            this.buttonRepeta.UseVisualStyleBackColor = false;
-            this.buttonRepeta.Click += new System.EventHandler(this.buttonRepeta_Click);
-            // 
-            // tableLayoutPanel8
-            // 
-            this.tableLayoutPanel8.AutoSize = true;
-            this.tableLayoutPanel8.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel8.ColumnCount = 2;
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Controls.Add(this.buttonInapoi, 0, 0);
-            this.tableLayoutPanel8.Controls.Add(this.buttonInainte, 1, 0);
-            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 52);
-            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
-            this.tableLayoutPanel8.RowCount = 1;
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(117, 36);
-            this.tableLayoutPanel8.TabIndex = 0;
-            // 
-            // buttonInapoi
-            // 
-            this.buttonInapoi.BackColor = System.Drawing.Color.SeaShell;
-            this.buttonInapoi.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonInapoi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonInapoi.Location = new System.Drawing.Point(3, 3);
-            this.buttonInapoi.Name = "buttonInapoi";
-            this.buttonInapoi.Size = new System.Drawing.Size(52, 30);
-            this.buttonInapoi.TabIndex = 0;
-            this.buttonInapoi.Text = "<";
-            this.buttonInapoi.UseVisualStyleBackColor = false;
-            this.buttonInapoi.Click += new System.EventHandler(this.buttonInapoi_Click);
-            // 
-            // buttonInainte
-            // 
-            this.buttonInainte.BackColor = System.Drawing.Color.SeaShell;
-            this.buttonInainte.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonInainte.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonInainte.Location = new System.Drawing.Point(61, 3);
-            this.buttonInainte.Name = "buttonInainte";
-            this.buttonInainte.Size = new System.Drawing.Size(53, 30);
-            this.buttonInainte.TabIndex = 1;
-            this.buttonInainte.Text = ">";
-            this.buttonInainte.UseVisualStyleBackColor = false;
-            this.buttonInainte.Click += new System.EventHandler(this.buttonInainte_Click);
-            // 
-            // buttonRedare
-            // 
-            this.buttonRedare.BackColor = System.Drawing.Color.SeaShell;
-            this.buttonRedare.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonRedare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonRedare.Location = new System.Drawing.Point(3, 3);
-            this.buttonRedare.Name = "buttonRedare";
-            this.buttonRedare.Size = new System.Drawing.Size(117, 43);
-            this.buttonRedare.TabIndex = 2;
-            this.buttonRedare.Text = "Redare";
-            this.buttonRedare.UseVisualStyleBackColor = false;
-            this.buttonRedare.Click += new System.EventHandler(this.buttonRedare_Click);
-            // 
-            // buttonOprire
-            // 
-            this.buttonOprire.BackColor = System.Drawing.Color.SeaShell;
-            this.buttonOprire.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonOprire.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonOprire.Location = new System.Drawing.Point(261, 3);
-            this.buttonOprire.Name = "buttonOprire";
-            this.buttonOprire.Size = new System.Drawing.Size(124, 140);
-            this.buttonOprire.TabIndex = 2;
-            this.buttonOprire.Text = "Oprire";
-            this.buttonOprire.UseVisualStyleBackColor = false;
-            this.buttonOprire.Click += new System.EventHandler(this.buttonOprire_Click);
-            // 
-            // buttonPauza
-            // 
-            this.buttonPauza.BackColor = System.Drawing.Color.SeaShell;
-            this.buttonPauza.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonPauza.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonPauza.Location = new System.Drawing.Point(3, 3);
-            this.buttonPauza.Name = "buttonPauza";
-            this.buttonPauza.Size = new System.Drawing.Size(123, 140);
-            this.buttonPauza.TabIndex = 1;
-            this.buttonPauza.Text = "Pauză";
-            this.buttonPauza.UseVisualStyleBackColor = false;
-            this.buttonPauza.Click += new System.EventHandler(this.buttonPauza_Click);
             // 
             // tableLayoutPanel6
             // 
@@ -614,72 +465,177 @@ namespace MP3_Player
             this.tableLayoutPanel6.RowCount = 2;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 85F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(388, 374);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(374, 295);
             this.tableLayoutPanel6.TabIndex = 1;
-            // 
-            // pictureBoxMelodie
-            // 
-            this.pictureBoxMelodie.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxMelodie.Image = global::MP3_Player.Properties.Resources.musical_note;
-            this.pictureBoxMelodie.Location = new System.Drawing.Point(3, 59);
-            this.pictureBoxMelodie.Name = "pictureBoxMelodie";
-            this.pictureBoxMelodie.Size = new System.Drawing.Size(382, 312);
-            this.pictureBoxMelodie.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxMelodie.TabIndex = 1;
-            this.pictureBoxMelodie.TabStop = false;
             // 
             // tableLayoutPanel11
             // 
             this.tableLayoutPanel11.AutoSize = true;
             this.tableLayoutPanel11.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel11.ColumnCount = 2;
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel11.Controls.Add(this.labelDuratie, 1, 0);
+            this.tableLayoutPanel11.ColumnCount = 1;
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel11.Controls.Add(this.labelDuratie, 0, 1);
             this.tableLayoutPanel11.Controls.Add(this.labelMelodie, 0, 0);
             this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
-            this.tableLayoutPanel11.RowCount = 1;
-            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(382, 50);
+            this.tableLayoutPanel11.RowCount = 2;
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(368, 38);
             this.tableLayoutPanel11.TabIndex = 2;
             // 
             // labelDuratie
             // 
-            this.labelDuratie.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelDuratie.BackColor = System.Drawing.Color.AntiqueWhite;
             this.labelDuratie.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.labelDuratie.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.labelDuratie.Location = new System.Drawing.Point(287, 3);
+            this.labelDuratie.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelDuratie.Font = new System.Drawing.Font("Lucida Console", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDuratie.Location = new System.Drawing.Point(3, 22);
             this.labelDuratie.Name = "labelDuratie";
             this.labelDuratie.ReadOnly = true;
             this.labelDuratie.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.labelDuratie.Size = new System.Drawing.Size(92, 15);
-            this.labelDuratie.TabIndex = 18;
+            this.labelDuratie.Size = new System.Drawing.Size(362, 13);
+            this.labelDuratie.TabIndex = 19;
             this.labelDuratie.Text = "00:30";
+            this.labelDuratie.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.labelDuratie.WordWrap = false;
-            this.labelDuratie.TextChanged += new System.EventHandler(this.labelDuratie_TextChanged);
             // 
             // labelMelodie
             // 
-            this.labelMelodie.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelMelodie.BackColor = System.Drawing.Color.AntiqueWhite;
             this.labelMelodie.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.labelMelodie.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.labelMelodie.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelMelodie.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelMelodie.Location = new System.Drawing.Point(3, 3);
             this.labelMelodie.Name = "labelMelodie";
             this.labelMelodie.ReadOnly = true;
             this.labelMelodie.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.labelMelodie.Size = new System.Drawing.Size(261, 15);
+            this.labelMelodie.Size = new System.Drawing.Size(362, 20);
             this.labelMelodie.TabIndex = 17;
             this.labelMelodie.Text = "Nume Artist - Nume Melodie";
+            this.labelMelodie.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.labelMelodie.WordWrap = false;
-            this.labelMelodie.TextChanged += new System.EventHandler(this.labelMelodie_TextChanged);
             this.labelMelodie.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.labelMelodie_MouseDoubleClick);
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.AutoSize = true;
+            this.tableLayoutPanel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel5.ColumnCount = 3;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel5.Controls.Add(this.buttonInapoi, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel7, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.buttonInainte, 2, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 388);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 111F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(374, 111);
+            this.tableLayoutPanel5.TabIndex = 14;
+            // 
+            // buttonInapoi
+            // 
+            this.buttonInapoi.AutoSize = true;
+            this.buttonInapoi.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonInapoi.BackColor = System.Drawing.Color.SeaShell;
+            this.buttonInapoi.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonInapoi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonInapoi.Location = new System.Drawing.Point(3, 3);
+            this.buttonInapoi.Name = "buttonInapoi";
+            this.buttonInapoi.Size = new System.Drawing.Size(118, 105);
+            this.buttonInapoi.TabIndex = 3;
+            this.buttonInapoi.Text = "<";
+            this.buttonInapoi.UseVisualStyleBackColor = false;
+            this.buttonInapoi.Click += new System.EventHandler(this.buttonInapoi_Click);
+            // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.AutoSize = true;
+            this.tableLayoutPanel7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel7.ColumnCount = 1;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.Controls.Add(this.buttonPauza, 0, 1);
+            this.tableLayoutPanel7.Controls.Add(this.buttonRepeta, 0, 2);
+            this.tableLayoutPanel7.Controls.Add(this.buttonRedare, 0, 0);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(127, 3);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 3;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(118, 105);
+            this.tableLayoutPanel7.TabIndex = 0;
+            // 
+            // buttonPauza
+            // 
+            this.buttonPauza.AutoSize = true;
+            this.buttonPauza.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonPauza.BackColor = System.Drawing.Color.SeaShell;
+            this.buttonPauza.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonPauza.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPauza.Location = new System.Drawing.Point(3, 38);
+            this.buttonPauza.Name = "buttonPauza";
+            this.buttonPauza.Size = new System.Drawing.Size(112, 29);
+            this.buttonPauza.TabIndex = 5;
+            this.buttonPauza.Text = "Pauză";
+            this.buttonPauza.UseVisualStyleBackColor = false;
+            this.buttonPauza.Click += new System.EventHandler(this.buttonPauza_Click);
+            // 
+            // buttonRepeta
+            // 
+            this.buttonRepeta.AutoSize = true;
+            this.buttonRepeta.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonRepeta.BackColor = System.Drawing.Color.SeaShell;
+            this.buttonRepeta.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonRepeta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRepeta.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRepeta.Location = new System.Drawing.Point(3, 73);
+            this.buttonRepeta.Name = "buttonRepeta";
+            this.buttonRepeta.Size = new System.Drawing.Size(112, 29);
+            this.buttonRepeta.TabIndex = 3;
+            this.buttonRepeta.Text = "Repetare";
+            this.buttonRepeta.UseVisualStyleBackColor = false;
+            this.buttonRepeta.Click += new System.EventHandler(this.buttonRepeta_Click);
+            // 
+            // buttonRedare
+            // 
+            this.buttonRedare.AutoSize = true;
+            this.buttonRedare.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonRedare.BackColor = System.Drawing.Color.SeaShell;
+            this.buttonRedare.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonRedare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRedare.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRedare.Location = new System.Drawing.Point(3, 3);
+            this.buttonRedare.Name = "buttonRedare";
+            this.buttonRedare.Size = new System.Drawing.Size(112, 29);
+            this.buttonRedare.TabIndex = 2;
+            this.buttonRedare.Text = "Redare";
+            this.buttonRedare.UseVisualStyleBackColor = false;
+            this.buttonRedare.Click += new System.EventHandler(this.buttonRedare_Click);
+            // 
+            // buttonInainte
+            // 
+            this.buttonInainte.AutoSize = true;
+            this.buttonInainte.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonInainte.BackColor = System.Drawing.Color.SeaShell;
+            this.buttonInainte.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonInainte.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonInainte.ForeColor = System.Drawing.Color.Black;
+            this.buttonInainte.Location = new System.Drawing.Point(251, 3);
+            this.buttonInainte.Name = "buttonInainte";
+            this.buttonInainte.Size = new System.Drawing.Size(120, 105);
+            this.buttonInainte.TabIndex = 4;
+            this.buttonInainte.Text = ">";
+            this.buttonInainte.UseVisualStyleBackColor = false;
+            this.buttonInainte.Click += new System.EventHandler(this.buttonInainte_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -697,7 +653,8 @@ namespace MP3_Player
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1015, 661);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 529F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(981, 529);
             this.tableLayoutPanel1.TabIndex = 9;
             // 
             // windowsMediaPlayer
@@ -711,13 +668,24 @@ namespace MP3_Player
             this.windowsMediaPlayer.Visible = false;
             this.windowsMediaPlayer.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.windowsMediaPlayer_PlayStateChange);
             // 
+            // pictureBoxMelodie
+            // 
+            this.pictureBoxMelodie.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxMelodie.Image = global::MP3_Player.Properties.Resources.musical_note;
+            this.pictureBoxMelodie.Location = new System.Drawing.Point(3, 47);
+            this.pictureBoxMelodie.Name = "pictureBoxMelodie";
+            this.pictureBoxMelodie.Size = new System.Drawing.Size(368, 245);
+            this.pictureBoxMelodie.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxMelodie.TabIndex = 1;
+            this.pictureBoxMelodie.TabStop = false;
+            // 
             // MP3_Player
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.ClientSize = new System.Drawing.Size(1015, 691);
+            this.ClientSize = new System.Drawing.Size(981, 559);
             this.Controls.Add(this.windowsMediaPlayer);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
@@ -725,7 +693,6 @@ namespace MP3_Player
             this.Name = "MP3_Player";
             this.Text = "MP3 Player";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MP3_Player_FormClosing);
-            this.Load += new System.EventHandler(this.MP3_Player_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MP3_Player_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MP3_Player_DragEnter);
             this.DragLeave += new System.EventHandler(this.MP3_Player_DragLeave);
@@ -753,21 +720,18 @@ namespace MP3_Player
             this.groupBox3.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
+            this.tableLayoutPanel11.ResumeLayout(false);
+            this.tableLayoutPanel11.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel7.PerformLayout();
-            this.tableLayoutPanel8.ResumeLayout(false);
-            this.tableLayoutPanel6.ResumeLayout(false);
-            this.tableLayoutPanel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMelodie)).EndInit();
-            this.tableLayoutPanel11.ResumeLayout(false);
-            this.tableLayoutPanel11.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.windowsMediaPlayer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMelodie)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -802,21 +766,18 @@ namespace MP3_Player
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
         private System.Windows.Forms.Button buttonCreeaza;
         private System.Windows.Forms.TextBox textBoxPlaylist;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
-        private System.Windows.Forms.Button buttonRepeta;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
-        private System.Windows.Forms.Button buttonInapoi;
-        private System.Windows.Forms.Button buttonInainte;
-        private System.Windows.Forms.Button buttonRedare;
-        private System.Windows.Forms.Button buttonOprire;
-        private System.Windows.Forms.Button buttonPauza;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.PictureBox pictureBoxMelodie;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
-        private System.Windows.Forms.TextBox labelDuratie;
         private System.Windows.Forms.TextBox labelMelodie;
+        private System.Windows.Forms.TextBox labelDuratie;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private System.Windows.Forms.Button buttonRepeta;
+        private System.Windows.Forms.Button buttonRedare;
+        private System.Windows.Forms.Button buttonInapoi;
+        private System.Windows.Forms.Button buttonPauza;
+        private System.Windows.Forms.Button buttonInainte;
     }
 }
 

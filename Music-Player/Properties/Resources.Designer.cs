@@ -63,6 +63,16 @@ namespace MP3_Player.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] arial_unicode_ms {
+            get {
+                object obj = ResourceManager.GetObject("arial_unicode_ms", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] MP3_Player_Docs {
             get {
                 object obj = ResourceManager.GetObject("MP3_Player_Docs", resourceCulture);
