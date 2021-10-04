@@ -858,5 +858,47 @@ namespace MP3_Player
                 listBoxPlaylisturi.SelectedIndex = index;
             }
         }
+
+        private void textBoxPlaylist_Enter(object sender, EventArgs e)
+        {
+            if (textBoxPlaylist.Text == "Nume...")
+            {
+                textBoxPlaylist.ForeColor = Color.Black;
+                textBoxPlaylist.Text = "";
+            }
+        }
+
+        private void textBoxPlaylist_Leave(object sender, EventArgs e)
+        {
+            if (textBoxPlaylist.Text == "")
+            {
+                textBoxPlaylist.ForeColor = Color.DimGray;
+                textBoxPlaylist.Text = "Nume...";
+            }
+        }
+
+        private void textBoxPlaylist_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                e.Handled = true;
+                buttonCreeaza_Click(sender, e);
+            }
+        }
+
+        private void MP3_Player_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelDuratie_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelMelodie_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
