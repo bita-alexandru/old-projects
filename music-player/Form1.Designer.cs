@@ -56,6 +56,7 @@ namespace MP3_Player
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.pictureBoxMelodie = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.labelDuratie = new System.Windows.Forms.TextBox();
             this.labelMelodie = new System.Windows.Forms.TextBox();
@@ -68,7 +69,6 @@ namespace MP3_Player
             this.buttonInainte = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.windowsMediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
-            this.pictureBoxMelodie = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -82,12 +82,12 @@ namespace MP3_Player
             this.groupBox3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMelodie)).BeginInit();
             this.tableLayoutPanel11.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.windowsMediaPlayer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMelodie)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -98,21 +98,21 @@ namespace MP3_Player
             this.menuItemAjutor});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(981, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(981, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // menuItemSalveaza
             // 
             this.menuItemSalveaza.Name = "menuItemSalveaza";
-            this.menuItemSalveaza.Size = new System.Drawing.Size(81, 26);
+            this.menuItemSalveaza.Size = new System.Drawing.Size(81, 24);
             this.menuItemSalveaza.Text = "Salvează";
             this.menuItemSalveaza.Click += new System.EventHandler(this.menuItemSalveaza_Click);
             // 
             // menuItemAjutor
             // 
             this.menuItemAjutor.Name = "menuItemAjutor";
-            this.menuItemAjutor.Size = new System.Drawing.Size(64, 26);
+            this.menuItemAjutor.Size = new System.Drawing.Size(64, 24);
             this.menuItemAjutor.Text = "Ajutor";
             this.menuItemAjutor.Click += new System.EventHandler(this.menuItemAjutor_Click);
             // 
@@ -124,7 +124,7 @@ namespace MP3_Player
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(288, 523);
+            this.groupBox1.Size = new System.Drawing.Size(288, 525);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Playlist-uri personale";
@@ -146,7 +146,7 @@ namespace MP3_Player
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(282, 502);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(282, 504);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // listBoxPlaylisturi
@@ -159,7 +159,7 @@ namespace MP3_Player
             this.listBoxPlaylisturi.ItemHeight = 20;
             this.listBoxPlaylisturi.Location = new System.Drawing.Point(3, 53);
             this.listBoxPlaylisturi.Name = "listBoxPlaylisturi";
-            this.listBoxPlaylisturi.Size = new System.Drawing.Size(276, 395);
+            this.listBoxPlaylisturi.Size = new System.Drawing.Size(276, 397);
             this.listBoxPlaylisturi.TabIndex = 8;
             this.listBoxPlaylisturi.SelectedValueChanged += new System.EventHandler(this.listBoxPlaylisturi_SelectedValueChanged);
             // 
@@ -173,7 +173,7 @@ namespace MP3_Player
             this.tableLayoutPanel10.Controls.Add(this.buttonAmesteca, 0, 0);
             this.tableLayoutPanel10.Controls.Add(this.buttonSterge, 0, 0);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 454);
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 456);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 1;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -263,7 +263,7 @@ namespace MP3_Player
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(689, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(289, 523);
+            this.groupBox2.Size = new System.Drawing.Size(289, 525);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Playlist curent";
@@ -284,7 +284,7 @@ namespace MP3_Player
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(283, 502);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(283, 504);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // textBoxCautare
@@ -306,7 +306,7 @@ namespace MP3_Player
             this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel2.Controls.Add(this.tableLayoutPanel9);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(3, 404);
+            this.panel2.Location = new System.Drawing.Point(3, 405);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(277, 76);
             this.panel2.TabIndex = 10;
@@ -416,7 +416,7 @@ namespace MP3_Player
             this.listBoxMelodii.ItemHeight = 20;
             this.listBoxMelodii.Location = new System.Drawing.Point(3, 53);
             this.listBoxMelodii.Name = "listBoxMelodii";
-            this.listBoxMelodii.Size = new System.Drawing.Size(277, 345);
+            this.listBoxMelodii.Size = new System.Drawing.Size(277, 346);
             this.listBoxMelodii.TabIndex = 7;
             this.listBoxMelodii.SelectedIndexChanged += new System.EventHandler(this.listBoxMelodii_SelectedIndexChanged);
             this.listBoxMelodii.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxMelodii_MouseDoubleClick);
@@ -429,7 +429,7 @@ namespace MP3_Player
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(297, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(386, 523);
+            this.groupBox3.Size = new System.Drawing.Size(386, 525);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Melodia curentă";
@@ -448,7 +448,7 @@ namespace MP3_Player
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(380, 502);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(380, 504);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // tableLayoutPanel6
@@ -465,8 +465,19 @@ namespace MP3_Player
             this.tableLayoutPanel6.RowCount = 2;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 85F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(374, 295);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(374, 296);
             this.tableLayoutPanel6.TabIndex = 1;
+            // 
+            // pictureBoxMelodie
+            // 
+            this.pictureBoxMelodie.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxMelodie.Image = global::MP3_Player.Properties.Resources.musical_note;
+            this.pictureBoxMelodie.Location = new System.Drawing.Point(3, 47);
+            this.pictureBoxMelodie.Name = "pictureBoxMelodie";
+            this.pictureBoxMelodie.Size = new System.Drawing.Size(368, 246);
+            this.pictureBoxMelodie.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxMelodie.TabIndex = 1;
+            this.pictureBoxMelodie.TabStop = false;
             // 
             // tableLayoutPanel11
             // 
@@ -518,7 +529,6 @@ namespace MP3_Player
             this.labelMelodie.Text = "Nume Artist - Nume Melodie";
             this.labelMelodie.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.labelMelodie.WordWrap = false;
-            this.labelMelodie.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.labelMelodie_MouseDoubleClick);
             // 
             // tableLayoutPanel5
             // 
@@ -532,7 +542,7 @@ namespace MP3_Player
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel7, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.buttonInainte, 2, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 388);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 390);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -649,12 +659,12 @@ namespace MP3_Player
             this.tableLayoutPanel1.Controls.Add(this.groupBox2, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.groupBox3, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 30);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 28);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 529F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(981, 529);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(981, 531);
             this.tableLayoutPanel1.TabIndex = 9;
             // 
             // windowsMediaPlayer
@@ -667,17 +677,6 @@ namespace MP3_Player
             this.windowsMediaPlayer.TabIndex = 10;
             this.windowsMediaPlayer.Visible = false;
             this.windowsMediaPlayer.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.windowsMediaPlayer_PlayStateChange);
-            // 
-            // pictureBoxMelodie
-            // 
-            this.pictureBoxMelodie.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxMelodie.Image = global::MP3_Player.Properties.Resources.musical_note;
-            this.pictureBoxMelodie.Location = new System.Drawing.Point(3, 47);
-            this.pictureBoxMelodie.Name = "pictureBoxMelodie";
-            this.pictureBoxMelodie.Size = new System.Drawing.Size(368, 245);
-            this.pictureBoxMelodie.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxMelodie.TabIndex = 1;
-            this.pictureBoxMelodie.TabStop = false;
             // 
             // MP3_Player
             // 
@@ -722,6 +721,7 @@ namespace MP3_Player
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMelodie)).EndInit();
             this.tableLayoutPanel11.ResumeLayout(false);
             this.tableLayoutPanel11.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
@@ -731,7 +731,6 @@ namespace MP3_Player
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.windowsMediaPlayer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMelodie)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

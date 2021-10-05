@@ -266,11 +266,15 @@ namespace MP3_Player
                     song = listBoxMelodii.Items[listBoxMelodii.SelectedIndex].ToString();
 
                     string location = GetLocation(song);
+                    if (!CheckFile(location)) return;
+
                     windowsMediaPlayer.URL = location;
                 }
                 else
                 {
                     song = title;
+                    if (!CheckFile(url)) return;
+
                     windowsMediaPlayer.URL = url;
                 }
 
@@ -394,6 +398,26 @@ namespace MP3_Player
             {
                 MessageBox.Show("Eroare la adăugarea melodiei.", "Eroare", MessageBoxButtons.OK);
             }
+        }
+
+        private bool CheckFile(string path)
+        {
+            if(!File.Exists(path))
+            {
+                DialogResult dialogResult = MessageBox.Show(
+                    "Fișierul audio nu se află la locația salvată: " + "\n\"" + path + "\"\n\n"
+                    + "Doriți să eliminați acest titlu din playlist?", "Eroare", MessageBoxButtons.YesNo
+                    );
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    RemoveSong();
+                }
+
+                return false;
+            }
+
+            return true;
         }
 
         private void buttonRedare_Click(object sender, EventArgs e)
@@ -754,6 +778,7 @@ namespace MP3_Player
 
             string playlist = listBoxPlaylisturi.Items[listBoxPlaylisturi.SelectedIndex].ToString();
             playlists[playlist] = newOrder;
+            songs = newOrder;
 
             bool selection = false;
 
@@ -850,26 +875,7 @@ namespace MP3_Player
 
         private void labelMelodie_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            string playlist = GetPlaylist();
-            string song = GetSong();
 
-            int index = listBoxPlaylisturi.FindString(playlist);
-
-            if (playlist != "" && index != ListBox.NoMatches)
-            {
-                listBoxPlaylisturi.SelectedIndex = index;
-
-                for (int i = 0; i < listBoxMelodii.Items.Count; i++)
-                {
-                    string name = listBoxMelodii.Items[i].ToString();
-
-                    if (name == song)
-                    {
-                        listBoxMelodii.SelectedIndex = i;
-                        return;
-                    }
-                }
-            }
         }
 
         private void textBoxPlaylist_Enter(object sender, EventArgs e)

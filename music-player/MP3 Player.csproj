@@ -88,7 +88,6 @@
     <None Include="Resources\play.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="resurse\arial-unicode-ms.ttf" />
     <None Include="resurse\playlist.png" />
   </ItemGroup>
   <ItemGroup>
@@ -112,9 +111,6 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ArialUnicode.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
