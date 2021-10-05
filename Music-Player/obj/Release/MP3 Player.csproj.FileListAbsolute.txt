@@ -1,0 +1,15 @@
+C:\Users\Alex\Desktop\Other-Projects\Music-Player\bin\Release\MP3 Player.exe.config
+C:\Users\Alex\Desktop\Other-Projects\Music-Player\bin\Release\MP3 Player.exe
+C:\Users\Alex\Desktop\Other-Projects\Music-Player\bin\Release\MP3 Player.pdb
+C:\Users\Alex\Desktop\Other-Projects\Music-Player\bin\Release\Interop.WMPLib.dll
+C:\Users\Alex\Desktop\Other-Projects\Music-Player\bin\Release\AxInterop.WMPLib.dll
+C:\Users\Alex\Desktop\Other-Projects\Music-Player\obj\Release\MP3 Player.csproj.AssemblyReference.cache
+C:\Users\Alex\Desktop\Other-Projects\Music-Player\obj\Release\Interop.WMPLib.dll
+C:\Users\Alex\Desktop\Other-Projects\Music-Player\obj\Release\AxInterop.WMPLib.dll
+C:\Users\Alex\Desktop\Other-Projects\Music-Player\obj\Release\MP3 Player.csproj.ResolveComReference.cache
+C:\Users\Alex\Desktop\Other-Projects\Music-Player\obj\Release\MP3_Player.MP3_Player.resources
+C:\Users\Alex\Desktop\Other-Projects\Music-Player\obj\Release\MP3_Player.Properties.Resources.resources
+C:\Users\Alex\Desktop\Other-Projects\Music-Player\obj\Release\MP3 Player.csproj.GenerateResource.cache
+C:\Users\Alex\Desktop\Other-Projects\Music-Player\obj\Release\MP3 Player.csproj.CoreCompileInputs.cache
+C:\Users\Alex\Desktop\Other-Projects\Music-Player\obj\Release\MP3 Player.exe
+C:\Users\Alex\Desktop\Other-Projects\Music-Player\obj\Release\MP3 Player.pdb
