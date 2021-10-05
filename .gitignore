@@ -1,2 +1,5 @@
 
 *.cache
+*.png
+*.jpg
+*.ttf
