@@ -529,6 +529,7 @@ namespace MP3_Player
             this.labelMelodie.Text = "Nume Artist - Nume Melodie";
             this.labelMelodie.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.labelMelodie.WordWrap = false;
+            this.labelMelodie.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.labelMelodie_MouseDoubleClick);
             // 
             // tableLayoutPanel5
             // 

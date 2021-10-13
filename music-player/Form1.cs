@@ -250,7 +250,14 @@ namespace MP3_Player
 
                 // reactualizam selectia din lista
                 int count = listBoxMelodii.Items.Count;
-                if (count > 0) listBoxMelodii.SelectedIndex = (index % count + count - 1) % count;
+                if (count > index)
+                {
+                    listBoxMelodii.SelectedIndex = index;
+                }
+                else if (count > 0)
+                {
+                    listBoxMelodii.SelectedIndex = index - 1;
+                }
             }
         }
 
@@ -378,8 +385,7 @@ namespace MP3_Player
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.CheckFileExists = true;
             openFileDialog.Title = "Adaugă o melodie";
-            openFileDialog.Filter = "MP3 files (*.mp3)|*.mp3";
-            openFileDialog.DefaultExt = ".mp3";
+            openFileDialog.Filter = "All Media Files | *.wav; *.aac; *.wma; *.wmv; *.avi; *.mpg; *.mpeg; *.m1v; *.mp2; *.mp3; *.mpa; *.mpe; *.m3u; *.mp4; *.mov; *.3g2; *.3gp2; *.3gp; *.3gpp; *.m4a; *.cda; *.aif; *.aifc; *.aiff; *.mid; *.midi; *.rmi; *.mkv";
             openFileDialog.Multiselect = true;
 
             DialogResult result = openFileDialog.ShowDialog();
@@ -486,11 +492,19 @@ namespace MP3_Player
         {
             // preia numele fisierelor trase in aplicatie
             string[] fileNames = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            HashSet<string> formats = new HashSet<string>();
+            foreach (string format in new string[] { "wav", "aac", "wma", "wmv", "avi", "mpg", "mpeg", "m1v", "mp2", "mp3", "mpa", "mp3", "m3u", "mp4", "mov", "3g2", "3gp2", "3gp", "3gpp", "m4a", "cda", "aif", "aifc", "aiff", "mid", "midi", "rmi", "mkv"})
+            {
+                formats.Add(format);
+            }
 
             // itereaza prin fiecare, verifica daca e .mp3 si preia numele fisierului
             foreach (string fileName in fileNames)
             {
-                if (fileName.ToLower().EndsWith(".mp3"))
+                int index = fileName.ToLower().LastIndexOf(".");
+                string format = fileName.Substring(index + 1, fileName.Length - index - 1).ToLower();
+
+                if (formats.Contains(format))
                 {
                     string name = "";
                     for (int i = 0; i < fileName.Length; i++)
